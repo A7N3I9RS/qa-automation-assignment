@@ -51,7 +51,6 @@ The same role-level scenarios are executed for:
 - `visual_user`
 
 Automated in [tests/ui/special-users.spec.ts](../tests/ui/special-users.spec.ts).
-The Gherkin-style specification is documented in [features/saucedemo-common-user-behavior.feature](../features/saucedemo-common-user-behavior.feature).
 Reusable flow helpers are implemented in [src/scenarios/saucedemo-user-scenarios.ts](../src/scenarios/saucedemo-user-scenarios.ts).
 
 Covered matrix checks:

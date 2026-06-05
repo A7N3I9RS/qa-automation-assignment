@@ -144,6 +144,5 @@ ReqRes create-user data is stored in [tests/api/data/create-users.json](../tests
 - Playwright API tests in [tests/api](../tests/api)
 - Page objects in [src/pages](../src/pages)
 - Reusable scenario helpers in [src/scenarios](../src/scenarios)
-- Gherkin-style scenario documentation in [features](../features)
 - Test documentation in [docs](.)
 - GitHub Actions workflow in [.github/workflows/playwright.yml](../.github/workflows/playwright.yml)

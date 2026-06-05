@@ -1,5 +1,7 @@
 import { expect, test, type APIResponse } from '@playwright/test';
-import createUsers from './data/create-users.json';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 type ReqResUser = {
   id: number;
@@ -29,6 +31,10 @@ type CreateUserResponse = {
 };
 
 const responseTimeLimitMs = Number(process.env.API_RESPONSE_TIME_LIMIT_MS ?? 1000);
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const createUsers = JSON.parse(
+  readFileSync(join(currentDir, 'data/create-users.json'), 'utf-8')
+) as Array<{ name: string; job: string }>;
 
 function isString(value: unknown): value is string {
   return typeof value === 'string' && value.length > 0;

@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { CartPage } from '../../src/pages/cart-page';
-import { CheckoutPage } from '../../src/pages/checkout-page';
-import { InventoryPage } from '../../src/pages/inventory-page';
-import { LoginPage } from '../../src/pages/login-page';
+import { CartPage } from '../../src/pages/cart-page.js';
+import { CheckoutPage } from '../../src/pages/checkout-page.js';
+import { InventoryPage } from '../../src/pages/inventory-page.js';
+import { LoginPage } from '../../src/pages/login-page.js';
 
 test.describe('SauceDemo checkout', () => {
   test('complete checkout flow ends with an order confirmation', async ({ page }) => {

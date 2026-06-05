@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { CartPage } from '../../src/pages/cart-page';
-import { InventoryPage } from '../../src/pages/inventory-page';
-import { LoginPage } from '../../src/pages/login-page';
+import { CartPage } from '../../src/pages/cart-page.js';
+import { InventoryPage } from '../../src/pages/inventory-page.js';
+import { LoginPage } from '../../src/pages/login-page.js';
 
 test.describe('SauceDemo catalog and cart', () => {
   test.beforeEach(async ({ page }) => {

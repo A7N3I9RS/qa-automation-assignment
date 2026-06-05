@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { InventoryPage } from '../../src/pages/inventory-page';
-import { LoginPage } from '../../src/pages/login-page';
+import { InventoryPage } from '../../src/pages/inventory-page.js';
+import { LoginPage } from '../../src/pages/login-page.js';
 
 test.describe('SauceDemo authentication', () => {
   test('successful login opens the inventory page', async ({ page }) => {

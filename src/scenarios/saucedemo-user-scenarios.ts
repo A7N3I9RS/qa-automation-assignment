@@ -1,8 +1,8 @@
 import { expect, type Page } from '@playwright/test';
-import { CartPage } from '../pages/cart-page';
-import { CheckoutPage } from '../pages/checkout-page';
-import { InventoryPage } from '../pages/inventory-page';
-import { LoginPage } from '../pages/login-page';
+import { CartPage } from '../pages/cart-page.js';
+import { CheckoutPage } from '../pages/checkout-page.js';
+import { InventoryPage } from '../pages/inventory-page.js';
+import { LoginPage } from '../pages/login-page.js';
 
 export const baselineProductPrices = [
   '$29.99',

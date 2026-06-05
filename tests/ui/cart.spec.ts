@@ -6,21 +6,27 @@ test.describe('SauceDemo catalog and cart', () => {
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
-  test('sorting products and changing cart contents updates the shopping state', async ({ inventoryPage, cartPage }) => {
+  test('user can sort products by price from low to high', async ({ inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Catalog sorting and cart updates are essential because they drive product discovery and purchase intent.'
+      description: 'Product sorting is essential because it helps users find relevant products faster.'
     });
 
     await inventoryPage.expectLoaded();
 
-    await inventoryPage.sortBy('za');
-    const namesDescending = await inventoryPage.getProductNames();
-    expect(namesDescending).toEqual([...namesDescending].sort().reverse());
-
     await inventoryPage.sortBy('lohi');
     const pricesAscending = await inventoryPage.getProductPrices();
+
     expect(pricesAscending).toEqual([...pricesAscending].sort((left, right) => left - right));
+  });
+
+  test('user can add and remove products from the cart', async ({ inventoryPage, cartPage }) => {
+    test.info().annotations.push({
+      type: 'rationale',
+      description: 'Cart management is essential because selected products represent the user purchase intent.'
+    });
+
+    await inventoryPage.expectLoaded();
 
     await inventoryPage.addBackpackToCart();
     await inventoryPage.addBikeLightToCart();

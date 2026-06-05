@@ -10,7 +10,7 @@ The tested applications are external systems, so this repository is a black-box 
 ## Documentation
 
 - [Test plan](docs/test-plan.md)
-- [Test scenarios and coverage](docs/test-scenarios.md)
+- [Test scenarios and test cases](docs/test-scenarios.md)
 - [Automation approach](docs/automation-approach.md)
 - [Project structure](docs/project-structure.md)
 

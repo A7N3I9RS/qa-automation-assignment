@@ -56,7 +56,7 @@ Supporting business scenarios:
 - User can sort products and manage cart contents
 - Users with the same shopper role should receive the same core behavior
 
-For detailed scenarios, see [Test scenarios and coverage](test-scenarios.md).
+For detailed scenarios and concrete test cases, see [Test scenarios and test cases](test-scenarios.md).
 
 ## Test Approach
 

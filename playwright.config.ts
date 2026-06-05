@@ -16,6 +16,9 @@ export default defineConfig({
     ['html', { open: 'never' }]
   ],
   use: {
+    launchOptions: {
+      slowMo: Number(process.env.PLAYWRIGHT_SLOW_MO_MS ?? 0)
+    },
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'

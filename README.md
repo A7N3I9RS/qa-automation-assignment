@@ -42,8 +42,18 @@ $env:API_RESPONSE_TIME_LIMIT_MS="1000"
 ```bash
 npm test
 npm run test:ui
+npm run test:ui:headed
+npm run test:defects
+npm run test:defects:headed
 npm run test:api
 npm run report
+```
+
+For an easier visual demo, run headed tests with slow motion:
+
+```powershell
+$env:PLAYWRIGHT_SLOW_MO_MS="300"
+npm run test:defects:headed
 ```
 
 ## Test Cases
@@ -61,6 +71,14 @@ npm run report
 
 4. Complete checkout flow ends with an order confirmation
    - Essential because checkout is the main business path from selected item to completed order.
+
+5. Special user behavior
+   - SauceDemo intentionally exposes different defects through dedicated users.
+   - `performance_glitch_user` is covered with a login performance expectation.
+   - `problem_user` is covered for broken product images and corrupted checkout form input.
+   - `error_user` is covered for checkout form data loss.
+   - `visual_user` is covered for incorrect product prices and a broken product image.
+   - These tests use Playwright `test.fail(...)` to document known defects as expected failures while keeping the automated report explicit.
 
 ### API: ReqRes
 

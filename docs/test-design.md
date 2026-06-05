@@ -1,6 +1,8 @@
-# Test Scenarios and Test Cases
+# Test Design
 
 This document describes the test design from business flow down to concrete automated test steps.
+
+The project uses a black-box testing approach: tests validate application behavior through the public UI and API without relying on internal implementation details or source code access. The focus is on functionality from the end-user and API consumer perspective.
 
 ```text
 Application

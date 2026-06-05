@@ -17,7 +17,7 @@ package.json                npm scripts and project metadata
 
 - [README.md](../README.md): project entry point
 - [docs/test-plan.md](test-plan.md): scope, assumptions, risks and approach
-- [docs/test-scenarios.md](test-scenarios.md): test scenarios, test cases and coverage links
+- [docs/test-design.md](test-design.md): test design from business flow to automated test steps
 - [docs/automation-approach.md](automation-approach.md): test architecture and execution strategy
 - [src/fixtures/pages.ts](../src/fixtures/pages.ts): page-object fixtures for UI tests
 - [playwright.config.ts](../playwright.config.ts): Playwright configuration

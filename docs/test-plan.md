@@ -56,6 +56,15 @@ Supporting business scenarios:
 - User can sort products and manage cart contents
 - Users with the same shopper role should receive the same core behavior
 
+Functional areas used for test design:
+
+- Authentication
+- Product Catalog
+- Cart
+- Checkout
+- Shared Shopper Behavior
+- Users API
+
 For detailed scenarios and concrete test cases, see [Test scenarios and test cases](test-scenarios.md).
 
 ## Test Approach

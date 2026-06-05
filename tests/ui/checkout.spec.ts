@@ -1,7 +1,7 @@
 import { test } from '../../src/fixtures/pages.js';
 
-test.describe('SauceDemo checkout', () => {
-  test('complete checkout flow ends with an order confirmation', async ({
+test.describe('SauceDemo successful product purchase', () => {
+  test('user can complete a purchase successfully', async ({
     cartPage,
     checkoutPage,
     inventoryPage,

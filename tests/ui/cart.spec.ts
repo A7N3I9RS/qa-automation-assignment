@@ -1,6 +1,6 @@
 import { expect, test } from '../../src/fixtures/pages.js';
 
-test.describe('SauceDemo catalog and cart', () => {
+test.describe('SauceDemo product sorting', () => {
   test.beforeEach(async ({ loginPage }) => {
     await loginPage.goto();
     await loginPage.login('standard_user', 'secret_sauce');
@@ -18,6 +18,13 @@ test.describe('SauceDemo catalog and cart', () => {
     const pricesAscending = await inventoryPage.getProductPrices();
 
     expect(pricesAscending).toEqual([...pricesAscending].sort((left, right) => left - right));
+  });
+});
+
+test.describe('SauceDemo cart management', () => {
+  test.beforeEach(async ({ loginPage }) => {
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
   });
 
   test('user can add and remove products from the cart', async ({ inventoryPage, cartPage }) => {

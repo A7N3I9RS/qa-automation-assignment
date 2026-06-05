@@ -1,22 +1,42 @@
 # Test Scenarios and Test Cases
 
-This document separates high-level test scenarios from concrete test cases.
-
-- Test scenario: what area or behavior should be tested.
-- Test case: how exactly the behavior is checked, including steps and expected result.
-- Automated test: Playwright implementation of the test case.
-
-## SauceDemo UI
-
-The main business scenario for SauceDemo is a successful product purchase flow:
+This document describes the test design from business flow down to concrete automated test steps.
 
 ```text
-Login -> Products -> Add to cart -> Cart -> Checkout information -> Overview -> Complete order
+Application
+  -> Business Flow
+    -> Functional Area
+      -> Test Suite
+        -> Test Scenario
+          -> Test Case
+            -> Test Steps
 ```
 
-### Test Scenario: Authentication
+Only implemented automated test cases are listed here. Additional negative cases can be added later as the suite grows.
 
-#### Test Case: User can log in with valid credentials
+## Application: SauceDemo
+
+SauceDemo is a demo e-commerce application. The main business flow is:
+
+```text
+User buys products
+```
+
+End-to-end flow:
+
+```text
+Login -> Products -> Add to cart -> Cart -> Checkout information -> Checkout overview -> Complete order
+```
+
+## Functional Area: Authentication
+
+Authentication controls access to the product purchase flow.
+
+### Test Suite: Login
+
+#### Test Scenario: User logs in to the application
+
+##### Test Case: Valid user can log in to the application
 
 Automated in [tests/ui/authentication.spec.ts](../tests/ui/authentication.spec.ts).
 
@@ -24,11 +44,11 @@ Preconditions:
 
 - User has valid credentials.
 
-Steps:
+Test steps:
 
 1. Open the SauceDemo login page.
-2. Enter a valid username.
-3. Enter a valid password.
+2. Enter `standard_user`.
+3. Enter the valid shared password.
 4. Click the login button.
 5. Verify that the Products page is displayed.
 
@@ -39,9 +59,9 @@ Expected result:
 
 Why essential:
 
-- Login is essential because every shopping flow starts behind the authentication gate.
+- Login is essential because every product purchase flow starts behind the authentication gate.
 
-#### Test Case: Locked-out user cannot log in
+##### Test Case: Locked-out user cannot log in to the application
 
 Automated in [tests/ui/authentication.spec.ts](../tests/ui/authentication.spec.ts).
 
@@ -49,13 +69,13 @@ Preconditions:
 
 - User account is locked out.
 
-Steps:
+Test steps:
 
 1. Open the SauceDemo login page.
 2. Enter `locked_out_user`.
 3. Enter the valid shared password.
 4. Click the login button.
-5. Verify that an error message is displayed.
+5. Verify that a login error message is displayed.
 
 Expected result:
 
@@ -66,9 +86,15 @@ Why essential:
 
 - Negative authentication coverage is essential because blocked users must not access the application.
 
-### Test Scenario: Product Sorting
+## Functional Area: Product Catalog
 
-#### Test Case: User can sort products by price from low to high
+The product catalog lets users discover products and select items for purchase.
+
+### Test Suite: Product Sorting
+
+#### Test Scenario: User sorts products in the catalog
+
+##### Test Case: User can sort products by price from low to high
 
 Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
 
@@ -78,7 +104,7 @@ Preconditions:
 - User is on the Products page.
 - Products are visible.
 
-Steps:
+Test steps:
 
 1. Select `Price (low to high)` from the sorting dropdown.
 2. Get all displayed product prices.
@@ -92,9 +118,11 @@ Why essential:
 
 - Sorting helps users find relevant products faster and improves product discovery.
 
-### Test Scenario: Cart Management
+### Test Suite: Product Selection
 
-#### Test Case: User can add and remove products from the cart
+#### Test Scenario: User manages selected products from the catalog
+
+##### Test Case: User can add and remove products from the cart
 
 Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
 
@@ -103,8 +131,9 @@ Preconditions:
 - User is logged in.
 - User is on the Products page.
 - Products are visible.
+- Cart is empty.
 
-Steps:
+Test steps:
 
 1. Add `Sauce Labs Backpack` to the cart.
 2. Add `Sauce Labs Bike Light` to the cart.
@@ -122,11 +151,80 @@ Expected result:
 
 Why essential:
 
-- Cart management is essential because selected products represent the user's purchase intent.
+- Product selection is essential because selected products represent the user's purchase intent.
 
-### Test Scenario: Successful Product Purchase
+## Functional Area: Cart
 
-#### Test Case: User can complete a purchase successfully
+The cart lets users review selected products before checkout.
+
+### Test Suite: Cart Review
+
+#### Test Scenario: User reviews cart contents
+
+##### Test Case: Cart shows the correct remaining product after product removal
+
+Automated as part of [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
+
+Preconditions:
+
+- User is logged in.
+- User added two products to the cart.
+- User removed one product before opening the cart.
+
+Test steps:
+
+1. Open the cart.
+2. Verify that the remaining product is visible.
+3. Verify that the removed product is not visible.
+
+Expected result:
+
+- Cart displays only the product that remains selected.
+
+Why essential:
+
+- Cart review is essential because users need to confirm what they are going to buy before checkout.
+
+## Functional Area: Checkout
+
+Checkout converts selected products into a completed order.
+
+### Test Suite: Checkout Information
+
+#### Test Scenario: User provides checkout information
+
+##### Test Case: User can continue with valid checkout information
+
+Automated as part of [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
+
+Preconditions:
+
+- User is logged in.
+- User has at least one product in the cart.
+- User started checkout.
+
+Test steps:
+
+1. Fill in first name.
+2. Fill in last name.
+3. Fill in postal code.
+4. Click the continue button.
+5. Verify that the checkout overview page is displayed.
+
+Expected result:
+
+- Checkout information is accepted.
+- User is moved to the checkout overview page.
+
+Why essential:
+
+- Checkout information is essential because the order cannot be completed without required customer data.
+
+### Test Suite: Checkout Overview
+
+#### Test Scenario: User confirms the order
+
+##### Test Case: User can complete a purchase successfully
 
 Automated in [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
 
@@ -134,8 +232,10 @@ Preconditions:
 
 - User has valid credentials.
 - Products are available.
+- User has selected a product.
+- User has entered valid checkout information.
 
-Steps:
+Test steps:
 
 1. Log in.
 2. Verify that the Products page is displayed.
@@ -153,11 +253,17 @@ Expected result:
 
 Why essential:
 
-- Checkout is the main business flow because it validates the path from product selection to completed order.
+- Checkout completion is the main business result because it validates the full path from product selection to completed order.
 
-### Test Scenario: Common Shopper Behavior Matrix
+## Functional Area: Shared Shopper Behavior
 
-#### Test Case: Users with the same shopper role should receive the same core behavior
+SauceDemo includes special users that expose different application defects.
+
+### Test Suite: Shopper Behavior Matrix
+
+#### Test Scenario: Users with the same shopper role receive the same core behavior
+
+##### Test Case: Common shopper behavior is consistent across special users
 
 Automated in [tests/ui/special-users.spec.ts](../tests/ui/special-users.spec.ts).
 Reusable flow helpers are implemented in [src/scenarios/saucedemo-user-scenarios.ts](../src/scenarios/saucedemo-user-scenarios.ts).
@@ -167,7 +273,7 @@ Preconditions:
 - SauceDemo special users are available.
 - Shared shopper users use the same password.
 
-Steps:
+Test steps:
 
 1. Run the same core shopper checks for `standard_user`, `problem_user`, `performance_glitch_user`, `error_user`, and `visual_user`.
 2. Verify that each shopper can open the product catalog within the accepted time.
@@ -178,17 +284,23 @@ Steps:
 Expected result:
 
 - `standard_user` demonstrates the expected baseline behavior.
-- Any user-specific defects are visible as failed tests.
+- User-specific defects are visible as failed tests.
 
 Why essential:
 
-- SauceDemo intentionally exposes defects through special users, so this matrix makes regressions and known defects visible in the report.
+- The matrix is essential because it makes known defects and behavioral differences visible in the report.
 
-## ReqRes API
+## Application: ReqRes
 
-### Test Scenario: List Users API
+ReqRes is a public REST API used for the API automation part of the assignment.
 
-#### Test Case: API returns expected users, counts and data types
+## Functional Area: Users API
+
+### Test Suite: List Users
+
+#### Test Scenario: Client retrieves users
+
+##### Test Case: API returns expected users, counts and data types
 
 Automated in [tests/api/reqres.spec.ts](../tests/api/reqres.spec.ts).
 
@@ -196,7 +308,7 @@ Preconditions:
 
 - `REQRES_API_KEY` is configured.
 
-Steps:
+Test steps:
 
 1. Send `GET /api/users?per_page=12`.
 2. Verify status code.
@@ -214,9 +326,11 @@ Why essential:
 
 - Listing users is essential because consumers need stable pagination metadata and predictable user records.
 
-### Test Scenario: Create User API
+### Test Suite: Create User
 
-#### Test Case: API creates users from external test data
+#### Test Scenario: Client creates users
+
+##### Test Case: API creates users from external test data
 
 Automated in [tests/api/reqres.spec.ts](../tests/api/reqres.spec.ts) with external data from [tests/api/data/create-users.json](../tests/api/data/create-users.json).
 
@@ -225,7 +339,7 @@ Preconditions:
 - `REQRES_API_KEY` is configured.
 - Create-user test data is available.
 
-Steps:
+Test steps:
 
 1. Read user payload from external test data.
 2. Send `POST /api/users`.

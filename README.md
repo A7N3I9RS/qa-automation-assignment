@@ -104,14 +104,4 @@ tests/api/data/             External data for data-driven tests
 playwright.config.ts        Playwright projects for UI and API
 ```
 
-## GitHub Publishing
-
-Create an empty public repository named `qa-automation-assignment` on GitHub, then connect this local repository:
-
-```bash
-git remote add origin https://github.com/<your-user>/qa-automation-assignment.git
-git branch -M main
-git push -u origin main
-```
-
 The repository includes a GitHub Actions workflow at `.github/workflows/playwright.yml`. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

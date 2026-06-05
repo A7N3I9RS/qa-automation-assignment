@@ -7,6 +7,13 @@ Playwright Test + TypeScript solution for two Moxymind technical tasks.
 
 The tested applications are external systems, so this repository is a black-box automation project. The application code is not expected to live next to these tests.
 
+## Documentation
+
+- [Test plan](docs/test-plan.md)
+- [Test scenarios and coverage](docs/test-scenarios.md)
+- [Automation approach](docs/automation-approach.md)
+- [Project structure](docs/project-structure.md)
+
 ## Prerequisites
 
 - Node.js 20 or newer
@@ -28,6 +35,7 @@ Optional environment variables:
 ```bash
 REQRES_API_KEY=replace-with-your-reqres-api-key
 API_RESPONSE_TIME_LIMIT_MS=1000
+PLAYWRIGHT_SLOW_MO_MS=300
 ```
 
 On Windows PowerShell:
@@ -35,6 +43,7 @@ On Windows PowerShell:
 ```powershell
 $env:REQRES_API_KEY="replace-with-your-reqres-api-key"
 $env:API_RESPONSE_TIME_LIMIT_MS="1000"
+$env:PLAYWRIGHT_SLOW_MO_MS="300"
 ```
 
 ## Run Tests
@@ -61,47 +70,4 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 npm run test:matrix:headed
 ```
 
-## Test Cases
-
-### Frontend UI: SauceDemo
-
-1. Successful login opens the inventory page
-   - Essential because every shopping flow starts behind the authentication gate.
-
-2. Locked-out user receives a clear login error
-   - Essential because blocked users must not enter the application.
-
-3. Sorting products and changing cart contents updates the shopping state
-   - Essential because sorting drives product discovery and cart updates represent purchase intent.
-
-4. Complete checkout flow ends with an order confirmation
-   - Essential because checkout is the main business path from selected item to completed order.
-
-5. Common shopper behavior matrix
-   - SauceDemo intentionally exposes different defects through dedicated users.
-   - The same role-level scenarios are executed for `standard_user`, `problem_user`, `performance_glitch_user`, `error_user`, and `visual_user`.
-   - This makes the report actionable: `standard_user` shows the expected baseline, while failing users identify which shared shopper behavior is currently broken.
-   - The Gherkin-style specification is documented in `features/saucedemo-common-user-behavior.feature`; Playwright scenario helpers implement the reusable flows in `src/scenarios/saucedemo-user-scenarios.ts`.
-   - Failures are not hidden as expected failures. They should stay red until the application defects are fixed.
-
-### API: ReqRes
-
-1. `GET /api/users?per_page=12`
-   - Validates status code, `total`, first and second `last_name`, `data` count, pagination metadata and user field types.
-   - `per_page=12` is used because the assignment asks to compare the number of users in `data` to `total`; the default paginated response returns only one page while `total` represents the whole collection.
-
-2. `POST /api/users`
-   - Uses external data from `tests/api/data/create-users.json`.
-   - Validates HTTP status, generated `id`, `createdAt`, request echo, timestamp format, response time and response shape.
-
-## Project Structure
-
-```text
-src/pages/                  SauceDemo page objects
-tests/ui/                   Frontend e2e tests
-tests/api/                  ReqRes API tests
-tests/api/data/             External data for data-driven tests
-playwright.config.ts        Playwright projects for UI and API
-```
-
-The repository includes a GitHub Actions workflow at `.github/workflows/playwright.yml`. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.
+The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

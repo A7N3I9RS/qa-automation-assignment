@@ -1,127 +1,80 @@
-import { expect, test, type Page } from '@playwright/test';
-import { InventoryPage } from '../../src/pages/inventory-page';
-import { LoginPage } from '../../src/pages/login-page';
+import { expect, test } from '@playwright/test';
+import {
+  expectCatalogVisualsMatchBaseline,
+  expectCheckoutCanBeCompleted,
+  expectCheckoutFormPreservesCustomerInfo,
+  expectInventoryLoadsWithin
+} from '../../src/scenarios/saucedemo-user-scenarios';
 
-const expectedProductPrices = [
-  '$29.99',
-  '$9.99',
-  '$15.99',
-  '$49.99',
-  '$7.99',
-  '$15.99'
+const shoppingUsers = [
+  'standard_user',
+  'problem_user',
+  'performance_glitch_user',
+  'error_user',
+  'visual_user'
 ];
 
-async function loginAs(page: Page, username: string) {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
+test.describe('SauceDemo common user behavior matrix', () => {
+  for (const username of shoppingUsers) {
+    test(`${username} should load inventory within the accepted login time`, async ({ page }) => {
+      test.info().annotations.push({
+        type: 'rationale',
+        description:
+          'Users with the same shopper role should be able to reach the catalog without user-specific delays.'
+      });
 
-  await loginPage.goto();
-  await loginPage.login(username, 'secret_sauce');
-  await inventoryPage.expectLoaded();
+      await expectInventoryLoadsWithin(page, username, 3000);
+    });
+  }
 
-  return inventoryPage;
-}
+  for (const username of shoppingUsers) {
+    test(`${username} should display baseline product prices and images`, async ({ page }) => {
+      test.info().annotations.push({
+        type: 'rationale',
+        description:
+          'Users with the same shopper role should see the same product data, prices and images.'
+      });
 
-test.describe('SauceDemo special user behavior', () => {
-  test('performance_glitch_user should load inventory within an acceptable login time', async ({ page }) => {
-    test.fail(true, 'Known defect: performance_glitch_user intentionally delays the inventory page.');
+      await expectCatalogVisualsMatchBaseline(page, username);
+    });
+  }
+
+  for (const username of shoppingUsers) {
+    test(`${username} should preserve checkout form data`, async ({ page }) => {
+      test.info().annotations.push({
+        type: 'rationale',
+        description:
+          'Users with the same shopper role should be able to enter customer data without fields being corrupted or dropped.'
+      });
+
+      await expectCheckoutFormPreservesCustomerInfo(page, username);
+    });
+  }
+
+  for (const username of shoppingUsers) {
+    test(`${username} should complete checkout with the same shopper role behavior`, async ({ page }) => {
+      test.info().annotations.push({
+        type: 'rationale',
+        description:
+          'Users with the same shopper role should be able to complete the main purchase flow consistently.'
+      });
+
+      await expectCheckoutCanBeCompleted(page, username);
+    });
+  }
+
+  test('locked_out_user should remain blocked at login', async ({ page }) => {
     test.info().annotations.push({
       type: 'rationale',
       description:
-        'Login performance is essential because slow authentication blocks every downstream shopping workflow.'
+        'A locked user is the only accepted user in this dataset that should not share normal shopper access.'
     });
 
-    const startedAt = Date.now();
-    await loginAs(page, 'performance_glitch_user');
-    const loginTimeMs = Date.now() - startedAt;
+    await page.goto('/');
+    await page.locator('[data-test="username"]').fill('locked_out_user');
+    await page.locator('[data-test="password"]').fill('secret_sauce');
+    await page.locator('[data-test="login-button"]').click();
 
-    expect(loginTimeMs).toBeLessThan(3000);
-  });
-
-  test('problem_user should display valid unique product images', async ({ page }) => {
-    test.fail(true, 'Known defect: problem_user displays the same broken product image for all items.');
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'Product images are essential because users rely on them to identify items before adding them to the cart.'
-    });
-
-    await loginAs(page, 'problem_user');
-
-    const imageSources = await page.locator('.inventory_item_img img').evaluateAll((images) =>
-      images.map((image) => image.getAttribute('src') ?? '')
-    );
-
-    expect(new Set(imageSources).size).toBe(imageSources.length);
-    expect(imageSources.every((src) => !src.includes('sl-404'))).toBe(true);
-  });
-
-  test('problem_user should preserve checkout form fields and continue to overview', async ({ page }) => {
-    test.fail(true, 'Known defect: problem_user writes the last name into first name and leaves last name empty.');
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'Checkout form reliability is essential because corrupted customer data can block or invalidate an order.'
-    });
-
-    const inventoryPage = await loginAs(page, 'problem_user');
-
-    await inventoryPage.addBackpackToCart();
-    await inventoryPage.openCart();
-    await page.locator('[data-test="checkout"]').click();
-
-    await page.locator('[data-test="firstName"]').fill('Alex');
-    await page.locator('[data-test="lastName"]').fill('Tester');
-    await page.locator('[data-test="postalCode"]').fill('10001');
-
-    await expect(page.locator('[data-test="firstName"]')).toHaveValue('Alex');
-    await expect(page.locator('[data-test="lastName"]')).toHaveValue('Tester');
-
-    await page.locator('[data-test="continue"]').click();
-    await expect(page).toHaveURL(/\/checkout-step-two\.html$/);
-  });
-
-  test('error_user should preserve checkout form fields before continuing', async ({ page }) => {
-    test.fail(true, 'Known defect: error_user does not retain the last name value in checkout.');
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'Checkout form validation is essential because silently dropped values create unreliable customer data.'
-    });
-
-    const inventoryPage = await loginAs(page, 'error_user');
-
-    await inventoryPage.addBackpackToCart();
-    await inventoryPage.openCart();
-    await page.locator('[data-test="checkout"]').click();
-
-    await page.locator('[data-test="firstName"]').fill('Alex');
-    await page.locator('[data-test="lastName"]').fill('Tester');
-    await page.locator('[data-test="postalCode"]').fill('10001');
-
-    await expect(page.locator('[data-test="firstName"]')).toHaveValue('Alex');
-    await expect(page.locator('[data-test="lastName"]')).toHaveValue('Tester');
-    await expect(page.locator('[data-test="postalCode"]')).toHaveValue('10001');
-  });
-
-  test('visual_user should display baseline product prices and product images', async ({ page }) => {
-    test.fail(true, 'Known defect: visual_user shows incorrect prices and a broken backpack image.');
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'Visual correctness is essential because wrong prices or broken images directly mislead shoppers.'
-    });
-
-    const inventoryPage = await loginAs(page, 'visual_user');
-
-    await expect(inventoryPage.productPrices).toHaveText(expectedProductPrices);
-
-    const backpackImageSource = await page
-      .locator('.inventory_item')
-      .filter({ hasText: 'Sauce Labs Backpack' })
-      .locator('img')
-      .getAttribute('src');
-
-    expect(backpackImageSource).not.toContain('sl-404');
+    await expect(page.locator('[data-test="error"]')).toContainText('Sorry, this user has been locked out.');
   });
 });

@@ -21,6 +21,7 @@ npm run install:browsers
 ```
 
 ReqRes currently rejects unauthenticated legacy API requests. Create a free API key at the ReqRes dashboard and provide it as `REQRES_API_KEY` before running API tests.
+If `REQRES_API_KEY` is not set, the API tests are skipped with an explicit reason so the UI assignment remains runnable from a clean machine.
 
 Optional environment variables:
 
@@ -90,3 +91,5 @@ git remote add origin https://github.com/<your-user>/qa-automation-assignment.gi
 git branch -M main
 git push -u origin main
 ```
+
+The repository includes a GitHub Actions workflow at `.github/workflows/playwright.yml`. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

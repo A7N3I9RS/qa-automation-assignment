@@ -11,6 +11,8 @@ The tested applications are external systems, so this repository is a black-box 
 
 - [Test plan](docs/test-plan.md)
 - [Test design](docs/test-design.md)
+  - [Frontend test design](docs/frontend-test-design.md)
+  - [API test design](docs/api-test-design.md)
 - [Automation approach](docs/automation-approach.md)
 - [Project structure](docs/project-structure.md)
 

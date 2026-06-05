@@ -65,7 +65,7 @@ Functional areas used for test design:
 - Shared Shopper Behavior
 - Users API
 
-For detailed scenarios and concrete test cases, see [Test design](test-design.md).
+For detailed scenarios and concrete test cases, see [Test design](test-design.md), [Frontend test design](frontend-test-design.md), and [API test design](api-test-design.md).
 
 ## Test Approach
 

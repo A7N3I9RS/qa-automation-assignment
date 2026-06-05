@@ -1,4 +1,4 @@
-import { test } from '../../src/fixtures/pages.js';
+import { test } from '../../src/saucedemo/fixtures/pages.js';
 
 test.describe('SauceDemo authentication', () => {
   test('valid user can log in to the application', async ({ loginPage, inventoryPage }) => {

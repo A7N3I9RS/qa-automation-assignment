@@ -18,18 +18,18 @@ Application
 
 ## Design Documents
 
-- [Frontend test design](frontend-test-design.md)
-- [API test design](api-test-design.md)
+- [SauceDemo test design](saucedemo-test-design.md)
+- [ReqRes test design](reqres-test-design.md)
 
 ## Coverage Strategy
 
-The frontend test design starts from the main SauceDemo business flow:
+The SauceDemo test design starts from the main frontend business flow:
 
 ```text
 User buys products
 ```
 
-The API test design starts from the assigned ReqRes API capabilities:
+The ReqRes test design starts from the assigned API capabilities:
 
 ```text
 Client lists users

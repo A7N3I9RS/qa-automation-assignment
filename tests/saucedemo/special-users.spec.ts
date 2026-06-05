@@ -4,7 +4,7 @@ import {
   expectCheckoutCanBeCompleted,
   expectCheckoutFormPreservesCustomerInfo,
   expectInventoryLoadsWithin
-} from '../../src/scenarios/saucedemo-user-scenarios.js';
+} from '../../src/saucedemo/scenarios/saucedemo-user-scenarios.js';
 
 const shoppingUsers = [
   'standard_user',

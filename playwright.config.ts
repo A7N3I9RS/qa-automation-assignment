@@ -25,16 +25,16 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'ui',
-      testDir: './tests/ui',
+      name: 'saucedemo',
+      testDir: './tests/saucedemo',
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'https://www.saucedemo.com'
       }
     },
     {
-      name: 'api',
-      testDir: './tests/api',
+      name: 'reqres',
+      testDir: './tests/reqres',
       use: {
         baseURL: 'https://reqres.in',
         extraHTTPHeaders: apiHeaders

@@ -11,8 +11,8 @@ The tested applications are external systems, so this repository is a black-box 
 
 - [Test plan](docs/test-plan.md)
 - [Test design](docs/test-design.md)
-  - [Frontend test design](docs/frontend-test-design.md)
-  - [API test design](docs/api-test-design.md)
+  - [SauceDemo test design](docs/saucedemo-test-design.md)
+  - [ReqRes test design](docs/reqres-test-design.md)
 - [Automation approach](docs/automation-approach.md)
 - [Project structure](docs/project-structure.md)
 
@@ -52,6 +52,8 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 
 ```bash
 npm test
+npm run test:saucedemo
+npm run test:reqres
 npm run test:baseline
 npm run test:ui
 npm run test:ui:headed
@@ -63,7 +65,7 @@ npm run test:api
 npm run report
 ```
 
-`npm test` runs the full regression suite. It is expected to fail while SauceDemo still contains user-specific defects. Use `npm run test:baseline` to demonstrate the stable happy-path coverage for `standard_user` and the locked-out login check.
+`npm test` runs the full regression suite. It is expected to fail while SauceDemo still contains user-specific defects. Use `npm run test:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.
 
 For an easier visual demo, run headed tests with slow motion:
 

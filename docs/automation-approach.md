@@ -4,9 +4,9 @@
 
 The project uses Playwright Test with TypeScript.
 
-UI tests use typed Playwright fixtures from [src/fixtures](../src/fixtures) to provide page objects from [src/pages](../src/pages). This keeps selectors and page-level actions away from test assertions without recreating page objects inside every test. Shared scenario-level behavior is implemented in [src/scenarios](../src/scenarios).
+SauceDemo UI tests use typed Playwright fixtures from [src/saucedemo/fixtures](../src/saucedemo/fixtures) to provide page objects from [src/saucedemo/pages](../src/saucedemo/pages). This keeps selectors and page-level actions away from test assertions without recreating page objects inside every test. Shared SauceDemo scenario-level behavior is implemented in [src/saucedemo/scenarios](../src/saucedemo/scenarios).
 
-API tests use Playwright's built-in `request` fixture and external test data from [tests/api/data](../tests/api/data).
+ReqRes API tests use Playwright's built-in `request` fixture and external test data from [tests/reqres/data](../tests/reqres/data).
 
 ## Why This Coverage Was Prioritized
 
@@ -38,14 +38,16 @@ The special-user matrix keeps these failures visible. This makes the report usef
 | Command | Purpose |
 | --- | --- |
 | `npm test` | Run the full Playwright suite |
+| `npm run test:saucedemo` | Run all SauceDemo tests |
+| `npm run test:reqres` | Run all ReqRes tests |
 | `npm run test:baseline` | Run stable baseline UI coverage |
-| `npm run test:ui` | Run all UI tests |
-| `npm run test:ui:headed` | Run UI tests headed |
+| `npm run test:ui` | Alias for all SauceDemo tests |
+| `npm run test:ui:headed` | Run SauceDemo tests headed |
 | `npm run test:matrix` | Run SauceDemo special-user matrix |
 | `npm run test:matrix:headed` | Run SauceDemo special-user matrix headed |
 | `npm run test:defects` | Alias for the defect-focused matrix |
 | `npm run test:defects:headed` | Run defect-focused matrix headed |
-| `npm run test:api` | Run API tests |
+| `npm run test:api` | Alias for all ReqRes tests |
 | `npm run report` | Open the Playwright HTML report |
 
 ## Reporting and Debugging

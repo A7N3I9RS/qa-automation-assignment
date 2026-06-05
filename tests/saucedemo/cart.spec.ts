@@ -1,4 +1,4 @@
-import { expect, test } from '../../src/fixtures/pages.js';
+import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 
 test.describe('SauceDemo product sorting', () => {
   test.beforeEach(async ({ loginPage }) => {

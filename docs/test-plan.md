@@ -65,7 +65,7 @@ Functional areas used for test design:
 - Shared Shopper Behavior
 - Users API
 
-For detailed scenarios and concrete test cases, see [Test design](test-design.md), [Frontend test design](frontend-test-design.md), and [API test design](api-test-design.md).
+For detailed scenarios and concrete test cases, see [Test design](test-design.md), [SauceDemo test design](saucedemo-test-design.md), and [ReqRes test design](reqres-test-design.md).
 
 ## Test Approach
 
@@ -114,7 +114,7 @@ Shared SauceDemo password:
 secret_sauce
 ```
 
-ReqRes create-user data is stored in [tests/api/data/create-users.json](../tests/api/data/create-users.json).
+ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
 
 ## Assumptions
 
@@ -149,10 +149,10 @@ ReqRes create-user data is stored in [tests/api/data/create-users.json](../tests
 
 ## Deliverables
 
-- Playwright UI tests in [tests/ui](../tests/ui)
-- Playwright API tests in [tests/api](../tests/api)
-- Typed Playwright fixtures in [src/fixtures](../src/fixtures)
-- Page objects in [src/pages](../src/pages)
-- Reusable scenario helpers in [src/scenarios](../src/scenarios)
+- SauceDemo Playwright tests in [tests/saucedemo](../tests/saucedemo)
+- ReqRes Playwright tests in [tests/reqres](../tests/reqres)
+- SauceDemo typed Playwright fixtures in [src/saucedemo/fixtures](../src/saucedemo/fixtures)
+- SauceDemo page objects in [src/saucedemo/pages](../src/saucedemo/pages)
+- SauceDemo reusable scenario helpers in [src/saucedemo/scenarios](../src/saucedemo/scenarios)
 - Test documentation in [docs](.)
 - GitHub Actions workflow in [.github/workflows/playwright.yml](../.github/workflows/playwright.yml)

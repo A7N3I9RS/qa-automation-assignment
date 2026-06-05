@@ -1,4 +1,4 @@
-import { test } from '../../src/fixtures/pages.js';
+import { test } from '../../src/saucedemo/fixtures/pages.js';
 
 test.describe('SauceDemo checkout information', () => {
   test('user can continue with valid checkout information', async ({

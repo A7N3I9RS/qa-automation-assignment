@@ -1,4 +1,4 @@
-# Frontend Test Design
+# SauceDemo Test Design
 
 ## Application: SauceDemo
 
@@ -24,7 +24,7 @@ Authentication controls access to the product purchase flow.
 
 ##### Test Case: Valid user can log in to the application
 
-Automated in [tests/ui/authentication.spec.ts](../tests/ui/authentication.spec.ts).
+Automated in [tests/saucedemo/authentication.spec.ts](../tests/saucedemo/authentication.spec.ts).
 
 Preconditions:
 
@@ -49,7 +49,7 @@ Why essential:
 
 ##### Test Case: Locked-out user cannot log in to the application
 
-Automated in [tests/ui/authentication.spec.ts](../tests/ui/authentication.spec.ts).
+Automated in [tests/saucedemo/authentication.spec.ts](../tests/saucedemo/authentication.spec.ts).
 
 Preconditions:
 
@@ -82,7 +82,7 @@ The product catalog lets users discover products and select items for purchase.
 
 ##### Test Case: User can sort products by price from low to high
 
-Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
+Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
@@ -110,7 +110,7 @@ Why essential:
 
 ##### Test Case: User can add and remove products from the cart
 
-Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
+Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
@@ -146,7 +146,7 @@ The cart lets users review selected products before checkout.
 
 ##### Test Case: Cart shows the correct remaining product after product removal
 
-Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
+Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
@@ -178,7 +178,7 @@ Checkout converts selected products into a completed order.
 
 ##### Test Case: User can continue with valid checkout information
 
-Automated in [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
+Automated in [tests/saucedemo/checkout.spec.ts](../tests/saucedemo/checkout.spec.ts).
 
 Preconditions:
 
@@ -209,7 +209,7 @@ Why essential:
 
 ##### Test Case: User can complete a purchase successfully
 
-Automated in [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
+Automated in [tests/saucedemo/checkout.spec.ts](../tests/saucedemo/checkout.spec.ts).
 
 Preconditions:
 
@@ -248,8 +248,8 @@ SauceDemo includes special users that expose different application defects.
 
 ##### Test Case: Common shopper behavior is consistent across special users
 
-Automated in [tests/ui/special-users.spec.ts](../tests/ui/special-users.spec.ts).
-Reusable flow helpers are implemented in [src/scenarios/saucedemo-user-scenarios.ts](../src/scenarios/saucedemo-user-scenarios.ts).
+Automated in [tests/saucedemo/special-users.spec.ts](../tests/saucedemo/special-users.spec.ts).
+Reusable flow helpers are implemented in [src/saucedemo/scenarios/saucedemo-user-scenarios.ts](../src/saucedemo/scenarios/saucedemo-user-scenarios.ts).
 
 Preconditions:
 

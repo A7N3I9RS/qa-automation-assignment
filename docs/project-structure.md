@@ -3,6 +3,7 @@
 ```text
 .github/workflows/          GitHub Actions workflow
 docs/                       Test plan and supporting documentation
+src/fixtures/               Typed Playwright fixtures
 src/pages/                  SauceDemo page objects
 src/scenarios/              Reusable SauceDemo scenario helpers
 tests/ui/                   Frontend e2e tests
@@ -18,6 +19,7 @@ package.json                npm scripts and project metadata
 - [docs/test-plan.md](test-plan.md): scope, assumptions, risks and approach
 - [docs/test-scenarios.md](test-scenarios.md): automated scenarios and coverage
 - [docs/automation-approach.md](automation-approach.md): test architecture and execution strategy
+- [src/fixtures/pages.ts](../src/fixtures/pages.ts): page-object fixtures for UI tests
 - [playwright.config.ts](../playwright.config.ts): Playwright configuration
 - [tests/ui](../tests/ui): SauceDemo UI tests
 - [tests/api](../tests/api): ReqRes API tests

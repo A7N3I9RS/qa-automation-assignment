@@ -4,7 +4,7 @@
 
 The project uses Playwright Test with TypeScript.
 
-UI tests use page objects from [src/pages](../src/pages) to keep selectors and page-level actions away from test assertions. Shared scenario-level behavior is implemented in [src/scenarios](../src/scenarios).
+UI tests use typed Playwright fixtures from [src/fixtures](../src/fixtures) to provide page objects from [src/pages](../src/pages). This keeps selectors and page-level actions away from test assertions without recreating page objects inside every test. Shared scenario-level behavior is implemented in [src/scenarios](../src/scenarios).
 
 API tests use Playwright's built-in `request` fixture and external test data from [tests/api/data](../tests/api/data).
 

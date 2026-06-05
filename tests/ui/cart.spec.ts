@@ -1,23 +1,16 @@
-import { expect, test } from '@playwright/test';
-import { CartPage } from '../../src/pages/cart-page.js';
-import { InventoryPage } from '../../src/pages/inventory-page.js';
-import { LoginPage } from '../../src/pages/login-page.js';
+import { expect, test } from '../../src/fixtures/pages.js';
 
 test.describe('SauceDemo catalog and cart', () => {
-  test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
+  test.beforeEach(async ({ loginPage }) => {
     await loginPage.goto();
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
-  test('sorting products and changing cart contents updates the shopping state', async ({ page }) => {
+  test('sorting products and changing cart contents updates the shopping state', async ({ inventoryPage, cartPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description: 'Catalog sorting and cart updates are essential because they drive product discovery and purchase intent.'
     });
-
-    const inventoryPage = new InventoryPage(page);
-    const cartPage = new CartPage(page);
 
     await inventoryPage.expectLoaded();
 

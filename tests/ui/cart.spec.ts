@@ -27,7 +27,7 @@ test.describe('SauceDemo cart management', () => {
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
-  test('user can add and remove products from the cart', async ({ inventoryPage, cartPage }) => {
+  test('user can add and remove products from the cart', async ({ inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description: 'Cart management is essential because selected products represent the user purchase intent.'
@@ -41,6 +41,26 @@ test.describe('SauceDemo cart management', () => {
 
     await inventoryPage.removeBackpackFromCart();
     await inventoryPage.expectCartCount(1);
+  });
+});
+
+test.describe('SauceDemo cart review', () => {
+  test.beforeEach(async ({ loginPage }) => {
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
+  });
+
+  test('cart shows the correct remaining product after product removal', async ({ inventoryPage, cartPage }) => {
+    test.info().annotations.push({
+      type: 'rationale',
+      description: 'Cart review is essential because users need to confirm what they are going to buy before checkout.'
+    });
+
+    await inventoryPage.expectLoaded();
+
+    await inventoryPage.addBackpackToCart();
+    await inventoryPage.addBikeLightToCart();
+    await inventoryPage.removeBackpackFromCart();
 
     await inventoryPage.openCart();
     await cartPage.expectLoaded();

@@ -126,14 +126,11 @@ Test steps:
 3. Verify that the cart badge shows `2`.
 4. Remove `Sauce Labs Backpack` from the cart.
 5. Verify that the cart badge shows `1`.
-6. Open the cart.
-7. Verify that `Sauce Labs Bike Light` is visible.
-8. Verify that `Sauce Labs Backpack` is not visible.
 
 Expected result:
 
 - Cart badge shows the correct number of selected products.
-- Cart contains only the product that was not removed.
+- Removed product is no longer counted as selected.
 
 Why essential:
 
@@ -149,7 +146,7 @@ The cart lets users review selected products before checkout.
 
 ##### Test Case: Cart shows the correct remaining product after product removal
 
-Automated as part of [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
+Automated in [tests/ui/cart.spec.ts](../tests/ui/cart.spec.ts).
 
 Preconditions:
 
@@ -181,7 +178,7 @@ Checkout converts selected products into a completed order.
 
 ##### Test Case: User can continue with valid checkout information
 
-Automated as part of [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
+Automated in [tests/ui/checkout.spec.ts](../tests/ui/checkout.spec.ts).
 
 Preconditions:
 

@@ -35,7 +35,7 @@ The key assumptions and scenarios were identified from the visible application b
 - Mobile-specific browser matrix
 - Mobile-specific UI coverage
 - Accessibility audit
-- Visual regression snapshots
+- Broad visual regression coverage beyond a single checkout smoke snapshot
 - Load and stress testing
 - Contract testing against a formal OpenAPI schema
 
@@ -86,6 +86,7 @@ The project uses a risk-based automation approach:
 - REST API functional tests
 - Basic API schema and data validation
 - Basic API response-time validation for create-user requests
+- Checkout overview visual snapshot smoke test
 
 ## Test Environment
 

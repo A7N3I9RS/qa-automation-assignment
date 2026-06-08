@@ -1,4 +1,4 @@
-import { test } from '../../src/saucedemo/fixtures/pages.js';
+import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 
 test.describe('SauceDemo checkout information', () => {
   test('user can continue with valid checkout information', async ({
@@ -63,5 +63,46 @@ test.describe('SauceDemo successful product purchase', () => {
 
     await checkoutPage.finishOrder();
     await checkoutPage.expectOrderComplete();
+  });
+});
+
+test.describe('SauceDemo checkout visual regression', () => {
+  test('checkout overview matches the baseline screenshot', async ({
+    browserName,
+    cartPage,
+    checkoutPage,
+    inventoryPage,
+    loginPage,
+    page
+  }) => {
+    test.skip(browserName !== 'chromium', 'Visual baseline is captured only for Chromium.');
+
+    test.info().annotations.push({
+      type: 'rationale',
+      description: 'The checkout overview is a stable summary page and a useful target for a visual smoke check.'
+    });
+
+    await loginPage.goto();
+    await loginPage.login('standard_user', 'secret_sauce');
+    await inventoryPage.expectLoaded();
+
+    await inventoryPage.addBackpackToCart();
+    await inventoryPage.openCart();
+
+    await cartPage.expectLoaded();
+    await cartPage.checkout();
+
+    await checkoutPage.fillCustomerInfo({
+      firstName: 'Alex',
+      lastName: 'Tester',
+      postalCode: '10001'
+    });
+    await checkoutPage.expectOverviewLoaded();
+
+    await expect(page).toHaveScreenshot('checkout-overview.png', {
+      animations: 'disabled',
+      fullPage: true,
+      maxDiffPixelRatio: 0.02
+    });
   });
 });

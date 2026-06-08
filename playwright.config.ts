@@ -15,6 +15,7 @@ export default defineConfig({
     ['list'],
     ['html', { open: 'never' }]
   ],
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
   use: {
     launchOptions: {
       slowMo: Number(process.env.PLAYWRIGHT_SLOW_MO_MS ?? 0)

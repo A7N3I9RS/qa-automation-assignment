@@ -21,7 +21,7 @@ The Users API exposes user listing and user creation behavior through public end
 
 ##### Test Case: API returns expected users, counts and data types
 
-Automated in [tests/reqres/reqres.spec.ts](../tests/reqres/reqres.spec.ts).
+Automated in [tests/reqres/get-users.spec.ts](../tests/reqres/get-users.spec.ts).
 
 Preconditions:
 
@@ -51,7 +51,7 @@ Why essential:
 
 ##### Test Case: API creates users from external test data
 
-Automated in [tests/reqres/reqres.spec.ts](../tests/reqres/reqres.spec.ts) with external data from [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
+Automated in [tests/reqres/create-user.spec.ts](../tests/reqres/create-user.spec.ts) with external data from [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
 
 Preconditions:
 

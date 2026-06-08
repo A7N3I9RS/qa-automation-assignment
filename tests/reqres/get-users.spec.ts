@@ -1,11 +1,17 @@
-import { expect, test, type APIResponse } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+import {
+  expectJsonResponse,
+  isNonEmptyString,
+  isRecord,
+  type NonEmptyString
+} from './api-test-helpers.js';
 
 type User = {
   id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
+  email: NonEmptyString;
+  first_name: NonEmptyString;
+  last_name: NonEmptyString;
+  avatar: NonEmptyString;
 };
 
 type GetUsersResponse = {
@@ -15,16 +21,16 @@ type GetUsersResponse = {
   total_pages: number;
   data: User[];
   support: {
-    url: string;
-    text: string;
+    url: NonEmptyString;
+    text: NonEmptyString;
   };
 };
 
-function isNonEmptyString(value: unknown): value is string {
-  return typeof value === 'string' && value.length > 0;
-}
-
 function isUser(value: unknown): value is User {
+  if (!isRecord(value)) {
+    return false;
+  }
+
   const user = value as User;
 
   return (
@@ -36,9 +42,29 @@ function isUser(value: unknown): value is User {
   );
 }
 
-function expectJsonResponse(response: APIResponse, expectedStatus: number) {
-  expect(response.status()).toBe(expectedStatus);
-  expect(response.headers()['content-type']).toContain('application/json');
+function expectGetUsersResponse(value: unknown): asserts value is GetUsersResponse {
+  expect(isRecord(value)).toBe(true);
+  if (!isRecord(value)) {
+    throw new Error('Expected response body to be an object.');
+  }
+
+  expect(typeof value.page).toBe('number');
+  expect(typeof value.per_page).toBe('number');
+  expect(typeof value.total).toBe('number');
+  expect(typeof value.total_pages).toBe('number');
+  expect(Array.isArray(value.data)).toBe(true);
+  if (!Array.isArray(value.data)) {
+    throw new Error('Expected response data to be an array.');
+  }
+
+  expect(value.data.every(isUser)).toBe(true);
+  expect(isRecord(value.support)).toBe(true);
+  if (!isRecord(value.support)) {
+    throw new Error('Expected response support to be an object.');
+  }
+
+  expect(isNonEmptyString(value.support.url)).toBe(true);
+  expect(isNonEmptyString(value.support.text)).toBe(true);
 }
 
 test.describe('ReqRes API - GET List Users', () => {
@@ -57,18 +83,13 @@ test.describe('ReqRes API - GET List Users', () => {
     const response = await request.get('/api/users?page=2');
     expectJsonResponse(response, 200);
 
-    const body = (await response.json()) as GetUsersResponse;
+    const body: unknown = await response.json();
+    expectGetUsersResponse(body);
 
     expect(body.total).toBe(12);
     expect(body.data).toHaveLength(body.per_page);
     expect(body.data[0].last_name).toBe('Lawson');
     expect(body.data[1].last_name).toBe('Ferguson');
 
-    expect(typeof body.page).toBe('number');
-    expect(typeof body.per_page).toBe('number');
-    expect(typeof body.total_pages).toBe('number');
-    expect(body.data.every(isUser)).toBe(true);
-    expect(isNonEmptyString(body.support.url)).toBe(true);
-    expect(isNonEmptyString(body.support.text)).toBe(true);
   });
 });

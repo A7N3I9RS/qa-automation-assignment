@@ -39,7 +39,7 @@ function isUser(value: unknown): value is User {
   );
 }
 
-function expectGetUsersResponse(value: unknown): asserts value is GetUsersResponse {
+function expectValueToMatchGetUsersResponseShape(value: unknown): asserts value is GetUsersResponse {
   expect(isPlainObject(value)).toBe(true);
   if (!isPlainObject(value)) {
     throw new Error('Expected response body to be an object.');
@@ -81,12 +81,11 @@ test.describe('ReqRes API - GET List Users', () => {
     expectJsonResponse(response, 200);
 
     const body: unknown = await response.json();
-    expectGetUsersResponse(body);
+    expectValueToMatchGetUsersResponseShape(body);
 
     expect(body.total).toBe(12);
     expect(body.data).toHaveLength(body.per_page);
     expect(body.data[0].last_name).toBe('Lawson');
     expect(body.data[1].last_name).toBe('Ferguson');
-
   });
 });

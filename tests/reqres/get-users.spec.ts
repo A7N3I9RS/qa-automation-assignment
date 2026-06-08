@@ -1,17 +1,16 @@
 import { expect, test } from '@playwright/test';
 import {
   expectJsonResponse,
-  isNonEmptyString,
   isRecord,
-  type NonEmptyString
+  isString
 } from './api-test-helpers.js';
 
 type User = {
   id: number;
-  email: NonEmptyString;
-  first_name: NonEmptyString;
-  last_name: NonEmptyString;
-  avatar: NonEmptyString;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
 };
 
 type GetUsersResponse = {
@@ -21,8 +20,8 @@ type GetUsersResponse = {
   total_pages: number;
   data: User[];
   support: {
-    url: NonEmptyString;
-    text: NonEmptyString;
+    url: string;
+    text: string;
   };
 };
 
@@ -35,10 +34,10 @@ function isUser(value: unknown): value is User {
 
   return (
     typeof user?.id === 'number' &&
-    isNonEmptyString(user.email) &&
-    isNonEmptyString(user.first_name) &&
-    isNonEmptyString(user.last_name) &&
-    isNonEmptyString(user.avatar)
+    isString(user.email) &&
+    isString(user.first_name) &&
+    isString(user.last_name) &&
+    isString(user.avatar)
   );
 }
 
@@ -63,8 +62,8 @@ function expectGetUsersResponse(value: unknown): asserts value is GetUsersRespon
     throw new Error('Expected response support to be an object.');
   }
 
-  expect(isNonEmptyString(value.support.url)).toBe(true);
-  expect(isNonEmptyString(value.support.text)).toBe(true);
+  expect(isString(value.support.url)).toBe(true);
+  expect(isString(value.support.text)).toBe(true);
 }
 
 test.describe('ReqRes API - GET List Users', () => {

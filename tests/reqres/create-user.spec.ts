@@ -15,8 +15,8 @@ type CreateUserPayload = {
 };
 
 type CreateUserResponse = {
-  name: NonEmptyString;
-  job: NonEmptyString;
+  name: string;
+  job: string;
   id: NonEmptyString;
   createdAt: NonEmptyString;
 };
@@ -40,8 +40,8 @@ function expectCreateUserResponse(
     name: expectedUser.name,
     job: expectedUser.job
   });
-  expect(isNonEmptyString(value.name)).toBe(true);
-  expect(isNonEmptyString(value.job)).toBe(true);
+  expect(value.name).toBe(expectedUser.name);
+  expect(value.job).toBe(expectedUser.job);
   expect(isNonEmptyString(value.id)).toBe(true);
   expect(isNonEmptyString(value.createdAt)).toBe(true);
 }

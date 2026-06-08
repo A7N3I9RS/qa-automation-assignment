@@ -18,7 +18,7 @@
     "test:reqres": "playwright test --project=reqres",
     "test:api": "playwright test --project=reqres",
     "report": "playwright show-report",
-    "install:browsers": "playwright install chromium"
+    "install:browsers": "playwright install chromium firefox webkit"
   },
   "keywords": [
     "playwright",

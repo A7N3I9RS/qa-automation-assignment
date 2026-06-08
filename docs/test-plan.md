@@ -32,7 +32,7 @@ The key assumptions and scenarios were identified from the visible application b
 
 - Source-code level testing of SauceDemo or ReqRes
 - Payment processing, because SauceDemo uses a demo checkout flow
-- Cross-browser matrix beyond Desktop Chrome
+- Mobile-specific browser matrix
 - Mobile-specific UI coverage
 - Accessibility audit
 - Visual regression snapshots
@@ -91,7 +91,7 @@ The project uses a risk-based automation approach:
 
 - Test runner: Playwright Test
 - Language: TypeScript
-- UI browser project: Desktop Chrome
+- UI browser projects: Desktop Chrome, Desktop Firefox and Desktop Safari/WebKit
 - UI base URL: `https://www.saucedemo.com`
 - API base URL: `https://reqres.in`
 - Report: Playwright HTML report
@@ -122,7 +122,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 - `standard_user` represents the expected baseline shopper behavior.
 - SauceDemo special users intentionally expose defects and should be tested as a behavior matrix.
 - ReqRes requires `REQRES_API_KEY` for API tests, so API tests are skipped when the key is not provided.
-- Desktop Chrome is sufficient for the assignment unless a wider browser matrix is requested.
+- The UI suite runs across Chromium, Firefox and WebKit desktop browser engines.
 
 ## Risks
 
@@ -135,7 +135,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 ## Entry Criteria
 
 - Dependencies are installed with `npm install`
-- Chromium is installed with `npm run install:browsers`
+- Playwright browser engines are installed with `npm run install:browsers`
 - Internet access is available
 - `REQRES_API_KEY` is configured when API tests are required
 

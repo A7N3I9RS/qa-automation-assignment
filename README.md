@@ -40,6 +40,8 @@ API_RESPONSE_TIME_LIMIT_MS=1000
 PLAYWRIGHT_SLOW_MO_MS=300
 ```
 
+For local runs, these values can be stored in a `.env` file copied from `.env.example`.
+
 On Windows PowerShell:
 
 ```powershell

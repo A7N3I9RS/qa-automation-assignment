@@ -42,6 +42,7 @@ The special-user matrix keeps these failures visible. This makes the report usef
 | `npm run test:reqres` | Run all ReqRes tests |
 | `npm run test:baseline` | Run stable baseline UI coverage |
 | `npm run test:ui` | Alias for all SauceDemo tests |
+| `npm run test:ui-mode` | Open Playwright UI mode for local test development |
 | `npm run test:ui:headed` | Run SauceDemo tests headed |
 | `npm run test:matrix` | Run SauceDemo special-user matrix |
 | `npm run test:matrix:headed` | Run SauceDemo special-user matrix headed |

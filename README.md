@@ -56,6 +56,7 @@ npm run test:saucedemo
 npm run test:reqres
 npm run test:baseline
 npm run test:ui
+npm run test:ui-mode
 npm run test:ui:headed
 npm run test:matrix
 npm run test:matrix:headed
@@ -66,6 +67,8 @@ npm run report
 ```
 
 `npm test` runs the full regression suite. It is expected to fail while SauceDemo still contains user-specific defects. Use `npm run test:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.
+
+Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
 
 For an easier visual demo, run headed tests with slow motion:
 

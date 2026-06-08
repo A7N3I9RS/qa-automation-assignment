@@ -9,6 +9,7 @@
     "test:saucedemo": "playwright test --project=saucedemo",
     "test:saucedemo:headed": "playwright test --project=saucedemo --headed --workers=1",
     "test:ui": "playwright test --project=saucedemo",
+    "test:ui-mode": "playwright test --ui",
     "test:ui:headed": "playwright test --project=saucedemo --headed --workers=1",
     "test:baseline": "playwright test --project=saucedemo tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts",
     "test:matrix": "playwright test --project=saucedemo tests/saucedemo/special-users.spec.ts",

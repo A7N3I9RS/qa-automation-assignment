@@ -1,6 +1,6 @@
 {
   "name": "qa-automation-assignment",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Playwright UI and API automation assignment for Moxymind.",
   "private": true,
   "type": "module",

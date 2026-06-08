@@ -33,6 +33,22 @@ export default defineConfig({
       }
     },
     {
+      name: 'saucedemo-firefox',
+      testDir: './tests/saucedemo',
+      use: {
+        ...devices['Desktop Firefox'],
+        baseURL: 'https://www.saucedemo.com'
+      }
+    },
+    {
+      name: 'saucedemo-webkit',
+      testDir: './tests/saucedemo',
+      use: {
+        ...devices['Desktop Safari'],
+        baseURL: 'https://www.saucedemo.com'
+      }
+    },
+    {
       name: 'reqres',
       testDir: './tests/reqres',
       use: {

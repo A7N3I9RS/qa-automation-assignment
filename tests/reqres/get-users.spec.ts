@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import {
   expectJsonResponse,
-  isRecord,
+  isPlainObject,
   isString
 } from './api-test-helpers.js';
 
@@ -26,7 +26,7 @@ type GetUsersResponse = {
 };
 
 function isUser(value: unknown): value is User {
-  if (!isRecord(value)) {
+  if (!isPlainObject(value)) {
     return false;
   }
 
@@ -42,8 +42,8 @@ function isUser(value: unknown): value is User {
 }
 
 function expectGetUsersResponse(value: unknown): asserts value is GetUsersResponse {
-  expect(isRecord(value)).toBe(true);
-  if (!isRecord(value)) {
+  expect(isPlainObject(value)).toBe(true);
+  if (!isPlainObject(value)) {
     throw new Error('Expected response body to be an object.');
   }
 
@@ -57,8 +57,8 @@ function expectGetUsersResponse(value: unknown): asserts value is GetUsersRespon
   }
 
   expect(value.data.every(isUser)).toBe(true);
-  expect(isRecord(value.support)).toBe(true);
-  if (!isRecord(value.support)) {
+  expect(isPlainObject(value.support)).toBe(true);
+  if (!isPlainObject(value.support)) {
     throw new Error('Expected response support to be an object.');
   }
 

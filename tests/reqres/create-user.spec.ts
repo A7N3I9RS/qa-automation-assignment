@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import {
   expectJsonResponse,
   isNonEmptyString,
-  isRecord,
+  isPlainObject,
   type NonEmptyString
 } from './api-test-helpers.js';
 
@@ -31,8 +31,8 @@ function expectCreateUserResponse(
   value: unknown,
   expectedUser: CreateUserPayload
 ): asserts value is CreateUserResponse {
-  expect(isRecord(value)).toBe(true);
-  if (!isRecord(value)) {
+  expect(isPlainObject(value)).toBe(true);
+  if (!isPlainObject(value)) {
     throw new Error('Expected response body to be an object.');
   }
 

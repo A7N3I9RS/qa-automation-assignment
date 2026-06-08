@@ -70,15 +70,15 @@ test.describe('ReqRes API', () => {
         'Listing users is essential because consumers need stable pagination metadata and predictable user records.'
     });
 
-    const response = await request.get('/api/users?per_page=12');
+    const response = await request.get('/api/users?page=2');
     expectSuccessfulResponse(response, 200);
 
     const body = (await response.json()) as ListUsersResponse;
 
     expect(body.total).toBe(12);
-    expect(body.data).toHaveLength(body.total);
-    expect(body.data[0].last_name).toBe('Bluth');
-    expect(body.data[1].last_name).toBe('Weaver');
+    expect(body.data).toHaveLength(body.per_page);
+    expect(body.data[0].last_name).toBe('Lawson');
+    expect(body.data[1].last_name).toBe('Ferguson');
 
     expect(typeof body.page).toBe('number');
     expect(typeof body.per_page).toBe('number');

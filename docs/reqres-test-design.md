@@ -29,10 +29,10 @@ Preconditions:
 
 Test steps:
 
-1. Send `GET /api/users?per_page=12`.
+1. Send `GET /api/users?page=2`.
 2. Verify status code.
 3. Verify response content type.
-4. Verify total user count and returned data count.
+4. Verify total user count and returned data count for the current page.
 5. Verify known user last names.
 6. Verify pagination metadata and user field types.
 

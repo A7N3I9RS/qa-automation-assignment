@@ -30,14 +30,12 @@ function isUser(value: unknown): value is User {
     return false;
   }
 
-  const user = value as User;
-
   return (
-    typeof user?.id === 'number' &&
-    isString(user.email) &&
-    isString(user.first_name) &&
-    isString(user.last_name) &&
-    isString(user.avatar)
+    typeof value.id === 'number' &&
+    isString(value.email) &&
+    isString(value.first_name) &&
+    isString(value.last_name) &&
+    isString(value.avatar)
   );
 }
 

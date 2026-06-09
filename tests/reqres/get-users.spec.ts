@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { expectJsonResponse } from './api-test-helpers.js';
-import { parseGetUsersResponse } from './get-users-response.js';
+import { expectValueToMatchGetUsersResponseShape } from './get-users-response.js';
 
 test.describe('ReqRes API - GET List Users', () => {
   test.skip(
@@ -18,7 +18,8 @@ test.describe('ReqRes API - GET List Users', () => {
     const response = await request.get('/api/users?page=2');
     expectJsonResponse(response, 200);
 
-    const body = parseGetUsersResponse(await response.json());
+    const body: unknown = await response.json();
+    expectValueToMatchGetUsersResponseShape(body);
 
     expect(body.total).toBe(12);
     expect(body.data).toHaveLength(body.per_page);

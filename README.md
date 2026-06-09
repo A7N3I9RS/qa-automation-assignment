@@ -80,7 +80,13 @@ Use `npm run test:saucedemo:baseline` when you need a focused baseline check for
 
 Use `npm run test:saucedemo:update-snapshots` to refresh the `standard_user` checkout visual baseline for Chromium, Firefox and WebKit. Snapshot files include the Playwright project name and OS platform, so each browser/OS pair compares only against its own baseline. Other users with access compare their checkout overview against that `standard_user` baseline so user-specific visual differences appear in the report.
 
-GitHub Actions runs on Ubuntu, so CI uses `*-linux.png` snapshots. To create or refresh those baselines, run `npm run test:saucedemo:update-snapshots` in an Ubuntu environment, then commit the generated `*-linux.png` files. The closest match to CI is a GitHub Actions workflow run or a local Ubuntu/WSL/Docker Playwright environment.
+GitHub Actions runs on Ubuntu, so CI uses `*-linux.png` snapshots. To create or refresh those baselines:
+
+1. Open GitHub Actions.
+2. Run the `Update SauceDemo Snapshots` workflow.
+3. Download the `saucedemo-linux-snapshots` artifact.
+4. Copy the generated `*-linux.png` files into `tests/saucedemo/checkout.spec.ts-snapshots`.
+5. Commit the Linux baseline snapshots.
 
 Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
 

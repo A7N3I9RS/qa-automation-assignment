@@ -1,6 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { expectJsonResponse } from './api-test-helpers.js';
-import { GetUsersResponseSchema, type GetUsersResponse } from './get-users-response.js';
+import { expectJsonResponse } from '../support/api-test-helpers.js';
+import {
+  GetUsersResponseSchema,
+  type GetUsersResponse
+} from '../schemas/get-users-response.js';
 
 test.describe('ReqRes API - GET List Users', () => {
   test.skip(

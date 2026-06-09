@@ -7,7 +7,7 @@ import {
   expectPlainObject,
   isNonEmptyString,
   type NonEmptyString
-} from './api-test-helpers.js';
+} from '../support/api-test-helpers.js';
 
 type CreateUserPayload = {
   name: string;
@@ -24,7 +24,7 @@ type CreateUserResponse = {
 const responseTimeLimitMs = Number(process.env.API_RESPONSE_TIME_LIMIT_MS ?? 1000);
 const currentDir = dirname(fileURLToPath(import.meta.url));
 const createUsers = JSON.parse(
-  readFileSync(join(currentDir, 'data/create-users.json'), 'utf-8')
+  readFileSync(join(currentDir, '../data/create-users.json'), 'utf-8')
 ) as CreateUserPayload[];
 
 function expectCreateUserResponse(

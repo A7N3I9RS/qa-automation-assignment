@@ -259,7 +259,7 @@ Preconditions:
 Test steps:
 
 1. Run the same core shopper checks for `standard_user`, `problem_user`, `performance_glitch_user`, `error_user`, and `visual_user`.
-2. Verify that each shopper can open the product catalog within the accepted time.
+2. Verify that each shopper can open the product catalog within the accepted time after submitting the login form.
 3. Verify that checkout form data is preserved.
 4. Verify that checkout can be completed.
 

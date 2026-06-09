@@ -13,9 +13,15 @@ const shoppingUsers = [
   'visual_user'
 ];
 
+const slowMoEnabled = ['1', 'true', 'yes', 'on'].includes(
+  process.env.PLAYWRIGHT_SLOW_MO_FLAG?.toLowerCase() ?? ''
+);
+
 test.describe('SauceDemo common user behavior matrix', () => {
   for (const username of shoppingUsers) {
     test(`${username} should load inventory within the accepted login time`, async ({ page }) => {
+      test.skip(slowMoEnabled, 'Login timing checks are not reliable with Playwright slow motion.');
+
       test.info().annotations.push({
         type: 'rationale',
         description:

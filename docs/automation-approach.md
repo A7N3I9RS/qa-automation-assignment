@@ -63,6 +63,8 @@ Playwright is configured to retain useful artifacts on failure:
 
 Visual snapshots use the project name in their path, so Chromium, Firefox and WebKit keep separate baselines and never compare screenshots across browsers.
 
+Slow motion is opt-in through `PLAYWRIGHT_SLOW_MO_FLAG=1`. `PLAYWRIGHT_SLOW_MO_MS_TIME` only controls the delay amount and defaults to `1000` milliseconds. Timing-sensitive checks are skipped when slow motion is enabled because Playwright's artificial action delay would distort the measured duration.
+
 ## CI
 
 The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](../.github/workflows/playwright.yml).

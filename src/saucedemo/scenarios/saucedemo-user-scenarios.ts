@@ -32,8 +32,16 @@ export async function expectInventoryLoadsWithin(
   username: string,
   maxLoginTimeMs: number
 ) {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
+
+  await loginPage.goto();
+  await loginPage.usernameInput.fill(username);
+  await loginPage.passwordInput.fill('secret_sauce');
+
   const startedAt = Date.now();
-  await loginAs(page, username);
+  await loginPage.loginButton.click();
+  await inventoryPage.expectLoaded();
   const loginTimeMs = Date.now() - startedAt;
 
   expect(loginTimeMs).toBeLessThan(maxLoginTimeMs);

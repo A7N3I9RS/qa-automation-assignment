@@ -1,6 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
 
+const isTruthy = (value: string | undefined) =>
+  ['1', 'true', 'yes', 'on'].includes(value?.toLowerCase() ?? '');
+
+const configuredSlowMoMs = Number(process.env.PLAYWRIGHT_SLOW_MO_MS_TIME ?? 1000);
+const slowMoMs = Number.isFinite(configuredSlowMoMs) ? configuredSlowMoMs : 1000;
+
 const apiHeaders = {
   ...(process.env.REQRES_API_KEY ? { 'x-api-key': process.env.REQRES_API_KEY } : {}),
   'Content-Type': 'application/json'
@@ -15,7 +21,7 @@ export default defineConfig({
   snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
   use: {
     launchOptions: {
-      slowMo: Number(process.env.PLAYWRIGHT_SLOW_MO_MS ?? 0)
+      slowMo: isTruthy(process.env.PLAYWRIGHT_SLOW_MO_FLAG) ? slowMoMs : 0
     },
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',

@@ -37,7 +37,8 @@ Optional environment variables:
 ```bash
 REQRES_API_KEY=replace-with-your-reqres-api-key
 API_RESPONSE_TIME_LIMIT_MS=1000
-PLAYWRIGHT_SLOW_MO_MS=300
+PLAYWRIGHT_SLOW_MO_FLAG=0
+PLAYWRIGHT_SLOW_MO_MS_TIME=1000
 ```
 
 For local runs, these values can be stored in a `.env` file copied from `.env.example`.
@@ -47,7 +48,8 @@ On Windows PowerShell:
 ```powershell
 $env:REQRES_API_KEY="replace-with-your-reqres-api-key"
 $env:API_RESPONSE_TIME_LIMIT_MS="1000"
-$env:PLAYWRIGHT_SLOW_MO_MS="300"
+$env:PLAYWRIGHT_SLOW_MO_FLAG="0"
+$env:PLAYWRIGHT_SLOW_MO_MS_TIME="1000"
 ```
 
 ## Run Tests
@@ -83,8 +85,11 @@ In GitHub Actions, the Playwright HTML report is uploaded as a workflow artifact
 For an easier visual demo, run headed tests with slow motion:
 
 ```powershell
-$env:PLAYWRIGHT_SLOW_MO_MS="300"
+$env:PLAYWRIGHT_SLOW_MO_FLAG="1"
+$env:PLAYWRIGHT_SLOW_MO_MS_TIME="1000"
 npm run test:saucedemo:special-users:headed
 ```
+
+`PLAYWRIGHT_SLOW_MO_MS_TIME` defaults to `1000` milliseconds, but it only takes effect when `PLAYWRIGHT_SLOW_MO_FLAG` is enabled. Login timing checks are skipped while slow motion is enabled because the artificial delay makes those measurements unreliable.
 
 The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

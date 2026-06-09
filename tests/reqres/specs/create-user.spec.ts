@@ -3,46 +3,18 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  expectJsonResponse,
-  expectPlainObject,
-  isNonEmptyString,
-  requireReqResApiKey,
-  type NonEmptyString
-} from '../support/api-test-helpers.js';
-
-type CreateUserPayload = {
-  name: string;
-  job: string;
-};
-
-type CreateUserResponse = {
-  name: string;
-  job: string;
-  id: NonEmptyString;
-  createdAt: NonEmptyString;
-};
+  CreateUserPayloadSchema,
+  CreateUserResponseSchema,
+  type CreateUserPayload,
+  type CreateUserResponse
+} from '../schemas/create-user.js';
+import { expectJsonResponse, requireReqResApiKey } from '../support/api-test-helpers.js';
 
 const responseTimeLimitMs = Number(process.env.API_RESPONSE_TIME_LIMIT_MS ?? 1000);
 const currentDir = dirname(fileURLToPath(import.meta.url));
-const createUsers = JSON.parse(
-  readFileSync(join(currentDir, '../data/create-users.json'), 'utf-8')
-) as CreateUserPayload[];
-
-function expectCreateUserResponse(
-  value: unknown,
-  expectedUser: CreateUserPayload
-): asserts value is CreateUserResponse {
-  expectPlainObject(value, 'Expected response body to be an object.');
-
-  expect(value).toMatchObject({
-    name: expectedUser.name,
-    job: expectedUser.job
-  });
-  expect(value.name).toBe(expectedUser.name);
-  expect(value.job).toBe(expectedUser.job);
-  expect(isNonEmptyString(value.id)).toBe(true);
-  expect(isNonEmptyString(value.createdAt)).toBe(true);
-}
+const createUsers: CreateUserPayload[] = CreateUserPayloadSchema.array().parse(
+  JSON.parse(readFileSync(join(currentDir, '../data/create-users.json'), 'utf-8'))
+);
 
 test.describe('ReqRes API - POST Create User', () => {
   test.beforeAll(() => {
@@ -64,9 +36,12 @@ test.describe('ReqRes API - POST Create User', () => {
       expectJsonResponse(response, 201);
       expect(responseTimeMs).toBeLessThan(responseTimeLimitMs);
 
-      const body: unknown = await response.json();
-      expectCreateUserResponse(body, user);
+      const body: CreateUserResponse = CreateUserResponseSchema.parse(await response.json());
 
+      expect(body).toMatchObject({
+        name: user.name,
+        job: user.job
+      });
       expect(Date.parse(body.createdAt)).not.toBeNaN();
     });
   }

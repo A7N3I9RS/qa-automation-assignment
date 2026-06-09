@@ -40,6 +40,7 @@ Optional environment variables:
 USERS_PASSWORD=replace-with-your-users-password
 REQRES_API_KEY=replace-with-your-reqres-api-key
 API_RESPONSE_TIME_LIMIT_MS=2000
+CATALOG_LOAD_TIME_LIMIT_MS=3000
 PLAYWRIGHT_SLOW_MO_FLAG=0
 PLAYWRIGHT_SLOW_MO_MS_TIME=1000
 ```
@@ -52,6 +53,7 @@ On Windows PowerShell:
 $env:USERS_PASSWORD="replace-with-your-users-password"
 $env:REQRES_API_KEY="replace-with-your-reqres-api-key"
 $env:API_RESPONSE_TIME_LIMIT_MS="2000"
+$env:CATALOG_LOAD_TIME_LIMIT_MS="3000"
 $env:PLAYWRIGHT_SLOW_MO_FLAG="0"
 $env:PLAYWRIGHT_SLOW_MO_MS_TIME="1000"
 ```

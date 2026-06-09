@@ -13,7 +13,7 @@ The suite is black-box automation: it tests public UI/API behavior, not applicat
 
 In scope:
 
-- SauceDemo login and locked-out login behavior
+- SauceDemo login, locked-out login and catalog load performance smoke behavior
 - SauceDemo catalog sorting, cart updates and cart review
 - SauceDemo checkout information, purchase completion and checkout visual comparison
 - SauceDemo user-specific behavior across users with access
@@ -42,7 +42,7 @@ Out of scope:
 - UI base URL: `https://www.saucedemo.com`
 - API base URL: `https://reqres.in`
 - Required local/CI env vars: `USERS_PASSWORD`, `REQRES_API_KEY`
-- Optional env vars: `API_RESPONSE_TIME_LIMIT_MS`, `PLAYWRIGHT_SLOW_MO_FLAG`, `PLAYWRIGHT_SLOW_MO_MS_TIME`
+- Optional env vars: `API_RESPONSE_TIME_LIMIT_MS`, `CATALOG_LOAD_TIME_LIMIT_MS`, `PLAYWRIGHT_SLOW_MO_FLAG`, `PLAYWRIGHT_SLOW_MO_MS_TIME`
 - ReqRes create-user data: [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json)
 
 ## Risks

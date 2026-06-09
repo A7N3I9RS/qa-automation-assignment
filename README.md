@@ -18,7 +18,7 @@ The tested applications are external systems, so this repository is a black-box 
 
 ## Prerequisites
 
-- Node.js 20 or newer
+- Node.js 24 LTS recommended
 - npm
 - Internet access to `saucedemo.com` and `reqres.in`
 
@@ -54,29 +54,33 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 
 ```bash
 npm test
-npm run test:saucedemo
+npm run test:ci
+npm run test:saucedemo:all-browsers
+npm run test:saucedemo:chromium
+npm run test:saucedemo:chromium:headed
+npm run test:saucedemo:firefox
+npm run test:saucedemo:webkit
 npm run test:reqres
-npm run test:baseline
-npm run test:ui
+npm run test:saucedemo:baseline
 npm run test:ui-mode
-npm run test:ui:headed
-npm run test:matrix
-npm run test:matrix:headed
-npm run test:defects
-npm run test:defects:headed
-npm run test:api
+npm run test:saucedemo:special-users
+npm run test:saucedemo:special-users:headed
 npm run show-report
 ```
 
-`npm test` runs the full regression suite. It is expected to fail while SauceDemo still contains user-specific defects. Use `npm run test:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.
+`npm run test:ci` runs the stable CI suite: SauceDemo baseline coverage in Chromium plus ReqRes API tests. Use this command when you want the same intent as GitHub Actions.
+
+`npm test` runs every Playwright project and can fail while SauceDemo still contains user-specific defects. Use `npm run test:saucedemo:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.
 
 Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
+
+Use `npm run show-report` to open the latest Playwright HTML report. Keep `http://localhost:9323/` open and refresh it after test reruns.
 
 For an easier visual demo, run headed tests with slow motion:
 
 ```powershell
 $env:PLAYWRIGHT_SLOW_MO_MS="300"
-npm run test:matrix:headed
+npm run test:saucedemo:special-users:headed
 ```
 
 The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

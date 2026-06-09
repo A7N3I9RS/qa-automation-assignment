@@ -37,18 +37,18 @@ The special-user matrix keeps these failures visible. This makes the report usef
 
 | Command | Purpose |
 | --- | --- |
-| `npm test` | Run the full Playwright suite |
-| `npm run test:saucedemo` | Run all SauceDemo tests |
+| `npm test` | Run every Playwright project |
+| `npm run test:ci` | Run the stable CI suite |
+| `npm run test:saucedemo:all-browsers` | Run SauceDemo tests in Chromium, Firefox and WebKit |
+| `npm run test:saucedemo:chromium` | Run SauceDemo tests in Chromium |
+| `npm run test:saucedemo:chromium:headed` | Run SauceDemo Chromium tests headed |
+| `npm run test:saucedemo:firefox` | Run SauceDemo tests in Firefox |
+| `npm run test:saucedemo:webkit` | Run SauceDemo tests in WebKit |
 | `npm run test:reqres` | Run all ReqRes tests |
-| `npm run test:baseline` | Run stable baseline UI coverage |
-| `npm run test:ui` | Alias for all SauceDemo tests |
+| `npm run test:saucedemo:baseline` | Run stable SauceDemo baseline coverage |
 | `npm run test:ui-mode` | Open Playwright UI mode for local test development |
-| `npm run test:ui:headed` | Run SauceDemo tests headed |
-| `npm run test:matrix` | Run SauceDemo special-user matrix |
-| `npm run test:matrix:headed` | Run SauceDemo special-user matrix headed |
-| `npm run test:defects` | Alias for the defect-focused matrix |
-| `npm run test:defects:headed` | Run defect-focused matrix headed |
-| `npm run test:api` | Alias for all ReqRes tests |
+| `npm run test:saucedemo:special-users` | Run SauceDemo special-user behavior matrix |
+| `npm run test:saucedemo:special-users:headed` | Run SauceDemo special-user behavior matrix headed |
 | `npm run show-report` | Open the Playwright HTML report |
 
 ## Reporting and Debugging
@@ -63,5 +63,7 @@ Playwright is configured to retain useful artifacts on failure:
 ## CI
 
 The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](../.github/workflows/playwright.yml).
+
+CI runs `npm run test:ci`, which keeps pull-request feedback stable while the full suite can still expose SauceDemo's intentional user-specific defects.
 
 To run ReqRes API tests in CI, configure a repository secret named `REQRES_API_KEY`.

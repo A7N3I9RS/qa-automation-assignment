@@ -6,18 +6,17 @@
   "type": "module",
   "scripts": {
     "test": "playwright test",
-    "test:saucedemo": "playwright test --project=saucedemo-chromium",
-    "test:saucedemo:headed": "playwright test --project=saucedemo-chromium --headed --workers=1",
-    "test:ui": "playwright test --project=saucedemo-chromium",
+    "test:ci": "playwright test --project=saucedemo-chromium --project=reqres tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts tests/reqres",
+    "test:saucedemo:all-browsers": "playwright test --project=saucedemo-chromium --project=saucedemo-firefox --project=saucedemo-webkit",
+    "test:saucedemo:chromium": "playwright test --project=saucedemo-chromium",
+    "test:saucedemo:chromium:headed": "playwright test --project=saucedemo-chromium --headed --workers=1",
+    "test:saucedemo:firefox": "playwright test --project=saucedemo-firefox",
+    "test:saucedemo:webkit": "playwright test --project=saucedemo-webkit",
     "test:ui-mode": "playwright test --ui",
-    "test:ui:headed": "playwright test --project=saucedemo-chromium --headed --workers=1",
-    "test:baseline": "playwright test --project=saucedemo-chromium tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts",
-    "test:matrix": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts",
-    "test:matrix:headed": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts --headed --workers=1",
-    "test:defects": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts",
-    "test:defects:headed": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts --headed --workers=1",
+    "test:saucedemo:baseline": "playwright test --project=saucedemo-chromium tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts",
+    "test:saucedemo:special-users": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts",
+    "test:saucedemo:special-users:headed": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts --headed --workers=1",
     "test:reqres": "playwright test --project=reqres",
-    "test:api": "playwright test --project=reqres",
     "show-report": "playwright show-report",
     "install:browsers": "playwright install chromium firefox webkit"
   },
@@ -31,9 +30,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.53.0",
-    "@types/node": "^22.15.31",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^24.13.1",
     "dotenv": "^17.4.2",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.3"
   }
 }

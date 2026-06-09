@@ -137,11 +137,13 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 
 - Dependencies are installed with `npm install`
 - Playwright browser engines are installed with `npm run install:browsers`
+- Node.js 24 LTS is recommended for local and CI execution
 - Internet access is available
 - `REQRES_API_KEY` is configured when API tests are required
 
 ## Exit Criteria
 
+- Stable CI tests pass with `npm run test:ci`
 - Stable baseline UI tests pass for `standard_user`
 - Locked-out login behavior is validated
 - API tests pass when `REQRES_API_KEY` is configured

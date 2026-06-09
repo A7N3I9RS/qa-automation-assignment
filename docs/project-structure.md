@@ -9,8 +9,8 @@ src/saucedemo/scenarios/    SauceDemo reusable scenario helpers
 tests/saucedemo/            SauceDemo frontend e2e tests
 tests/reqres/               ReqRes API tests
 tests/reqres/data/          ReqRes external data for data-driven tests
-playwright.config.ts        Playwright projects for SauceDemo and ReqRes
-package.json                npm scripts and project metadata
+playwright.config.ts        Playwright project definitions for SauceDemo and ReqRes
+package.json                readable npm scripts and project metadata
 ```
 
 ## Key Files

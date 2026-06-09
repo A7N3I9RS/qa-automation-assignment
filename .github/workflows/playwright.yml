@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Playwright CI
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  stable-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -31,8 +31,8 @@ jobs:
       - name: Type-check tests
         run: npx tsc --noEmit
 
-      - name: Run Playwright tests
-        run: npm test
+      - name: Run stable CI test suite
+        run: npm run test:ci
         env:
           REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
           API_RESPONSE_TIME_LIMIT_MS: 1000

@@ -69,6 +69,28 @@ Why essential:
 
 #### Test Scenario: Client creates users
 
+##### Test Case: API returns the expected create-user response schema
+
+Automated in [tests/reqres/specs/create-user.spec.ts](../tests/reqres/specs/create-user.spec.ts) with external data from [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
+
+Preconditions:
+
+- `REQRES_API_KEY` is configured.
+- Create-user test data is available.
+
+Test steps:
+
+1. Read one user payload from external test data.
+2. Send `POST /api/users`.
+3. Verify status code.
+4. Verify response content type.
+5. Validate the response schema with Zod.
+
+Expected result:
+
+- API returns `201`.
+- Response matches the expected create-user schema.
+
 ##### Test Case: API creates users from external test data
 
 Automated in [tests/reqres/specs/create-user.spec.ts](../tests/reqres/specs/create-user.spec.ts) with external data from [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
@@ -80,14 +102,14 @@ Preconditions:
 
 Test steps:
 
-1. Read user payload from external test data.
-2. Send `POST /api/users`.
+1. Read user payloads from external test data.
+2. Send `POST /api/users` for each payload.
 3. Verify status code.
 4. Verify response content type.
-5. Verify that request fields are echoed in the response.
-6. Verify that generated `id` and `createdAt` are present.
-7. Verify that `createdAt` is parseable as a date.
-8. Verify response time.
+5. Verify response time.
+6. Verify that request fields are echoed in the response.
+7. Verify that generated `id` and `createdAt` are strings.
+8. Verify that `createdAt` is parseable as a date.
 
 Expected result:
 

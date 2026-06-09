@@ -22,11 +22,13 @@ test.describe('ReqRes API - POST Create User', () => {
   });
 
   for (const user of createUsers) {
-    test(`returns id and timestamp for ${user.name}`, async ({ request }) => {
+    test(`validates response schema and created user data for ${user.name}`, async ({
+      request
+    }) => {
       test.info().annotations.push({
         type: 'rationale',
         description:
-          'Creating users is essential because POST flows must validate request construction, response metadata and performance.'
+          'Creating users is essential because POST flows must validate request construction, response metadata, schema and performance.'
       });
 
       const startedAt = Date.now();
@@ -38,11 +40,12 @@ test.describe('ReqRes API - POST Create User', () => {
 
       const body: CreateUserResponse = CreateUserResponseSchema.parse(await response.json());
 
-      expect(body).toMatchObject({
-        name: user.name,
-        job: user.job
-      });
-      expect(Date.parse(body.createdAt)).not.toBeNaN();
+      expect(body.name).toBe(user.name);
+      expect(body.job).toBe(user.job);
+
+      const createdAtTimestamp = Date.parse(body.createdAt);
+      expect(typeof createdAtTimestamp).toBe('number');
+      expect(createdAtTimestamp).toBeGreaterThan(0);
     });
   }
 });

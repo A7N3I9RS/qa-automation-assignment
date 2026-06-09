@@ -4,8 +4,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   expectJsonResponse,
+  expectPlainObject,
   isNonEmptyString,
-  isPlainObject,
   type NonEmptyString
 } from './api-test-helpers.js';
 
@@ -31,10 +31,7 @@ function expectCreateUserResponse(
   value: unknown,
   expectedUser: CreateUserPayload
 ): asserts value is CreateUserResponse {
-  expect(isPlainObject(value)).toBe(true);
-  if (!isPlainObject(value)) {
-    throw new Error('Expected response body to be an object.');
-  }
+  expectPlainObject(value, 'Expected response body to be an object.');
 
   expect(value).toMatchObject({
     name: expectedUser.name,

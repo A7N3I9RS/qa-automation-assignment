@@ -18,6 +18,26 @@ export function isPlainObject(value: unknown): value is Record<string, unknown> 
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+export function expectPlainObject(
+  value: unknown,
+  message = 'Expected value to be an object.'
+): asserts value is Record<string, unknown> {
+  expect(isPlainObject(value)).toBe(true);
+  if (!isPlainObject(value)) {
+    throw new Error(message);
+  }
+}
+
+export function expectArray(
+  value: unknown,
+  message = 'Expected value to be an array.'
+): asserts value is unknown[] {
+  expect(Array.isArray(value)).toBe(true);
+  if (!Array.isArray(value)) {
+    throw new Error(message);
+  }
+}
+
 export function expectJsonResponse(response: APIResponse, expectedStatus: number) {
   expect(response.status()).toBe(expectedStatus);
   expect(response.headers()['content-type']).toContain('application/json');

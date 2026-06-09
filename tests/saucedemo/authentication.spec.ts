@@ -1,7 +1,8 @@
 import { test } from '../../src/saucedemo/fixtures/pages.js';
+import { lockedOutUser, sauceDemoPassword, standardUser } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo authentication', () => {
-  test('valid user can log in to the application', async ({ loginPage, inventoryPage }) => {
+  test('standard_user can log in to the application', async ({ loginPage, inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description:
@@ -9,12 +10,12 @@ test.describe('SauceDemo authentication', () => {
     });
 
     await loginPage.goto();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.login(standardUser, sauceDemoPassword);
 
     await inventoryPage.expectLoaded();
   });
 
-  test('locked-out user cannot log in to the application', async ({ loginPage }) => {
+  test('locked_out_user cannot log in to the application', async ({ loginPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description:
@@ -22,7 +23,7 @@ test.describe('SauceDemo authentication', () => {
     });
 
     await loginPage.goto();
-    await loginPage.login('locked_out_user', 'secret_sauce');
+    await loginPage.login(lockedOutUser, sauceDemoPassword);
 
     await loginPage.expectErrorContains('Sorry, this user has been locked out.');
   });

@@ -65,8 +65,6 @@ npm run test:saucedemo:update-snapshots
 npm run test:reqres
 npm run test:saucedemo:baseline
 npm run test:ui-mode
-npm run test:saucedemo:special-users
-npm run test:saucedemo:special-users:headed
 npm run show-report
 ```
 
@@ -87,9 +85,9 @@ For an easier visual demo, run headed tests with slow motion:
 ```powershell
 $env:PLAYWRIGHT_SLOW_MO_FLAG="1"
 $env:PLAYWRIGHT_SLOW_MO_MS_TIME="1000"
-npm run test:saucedemo:special-users:headed
+npm run test:saucedemo:chromium:headed
 ```
 
-`PLAYWRIGHT_SLOW_MO_MS_TIME` defaults to `1000` milliseconds, but it only takes effect when `PLAYWRIGHT_SLOW_MO_FLAG` is enabled. Login timing checks are skipped while slow motion is enabled because the artificial delay makes those measurements unreliable.
+`PLAYWRIGHT_SLOW_MO_MS_TIME` defaults to `1000` milliseconds, but it only takes effect when `PLAYWRIGHT_SLOW_MO_FLAG` is enabled.
 
 The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

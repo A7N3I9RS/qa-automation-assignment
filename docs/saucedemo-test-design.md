@@ -86,7 +86,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in.
+- User is logged in as one of the shopping users.
 - User is on the Products page.
 - Products are visible.
 
@@ -114,7 +114,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in.
+- User is logged in as one of the shopping users.
 - User is on the Products page.
 - Products are visible.
 - Cart is empty.
@@ -150,7 +150,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in.
+- User is logged in as one of the shopping users.
 - User added two products to the cart.
 - User removed one product before opening the cart.
 
@@ -182,7 +182,7 @@ Automated in [tests/saucedemo/checkout.spec.ts](../tests/saucedemo/checkout.spec
 
 Preconditions:
 
-- User is logged in.
+- User is logged in as one of the shopping users.
 - User has at least one product in the cart.
 - User started checkout.
 
@@ -213,7 +213,7 @@ Automated in [tests/saucedemo/checkout.spec.ts](../tests/saucedemo/checkout.spec
 
 Preconditions:
 
-- User has valid credentials.
+- User has valid shopping credentials.
 - Products are available.
 - User has selected a product.
 - User has entered valid checkout information.
@@ -238,36 +238,6 @@ Why essential:
 
 - Checkout completion is the main business result because it validates the full path from product selection to completed order.
 
-## Functional Area: Shared Shopper Behavior
+## Shopper Coverage
 
-SauceDemo includes special users that expose different application defects.
-
-### Test Suite: Shopper Behavior Matrix
-
-#### Test Scenario: Users with the same shopper role receive the same core behavior
-
-##### Test Case: Common shopper behavior is consistent across special users
-
-Automated in [tests/saucedemo/special-users.spec.ts](../tests/saucedemo/special-users.spec.ts).
-Reusable flow helpers are implemented in [src/saucedemo/scenarios/saucedemo-user-scenarios.ts](../src/saucedemo/scenarios/saucedemo-user-scenarios.ts).
-
-Preconditions:
-
-- SauceDemo special users are available.
-- Shared shopper users use the same password.
-
-Test steps:
-
-1. Run the same core shopper checks for `standard_user`, `problem_user`, `performance_glitch_user`, `error_user`, and `visual_user`.
-2. Verify that each shopper can open the product catalog within the accepted time after submitting the login form.
-3. Verify that checkout form data is preserved.
-4. Verify that checkout can be completed.
-
-Expected result:
-
-- `standard_user` demonstrates the expected baseline behavior.
-- User-specific defects are visible as failed tests.
-
-Why essential:
-
-- The matrix is essential because it makes known defects and behavioral differences visible in the report.
+Cart and checkout tests are data-driven across `standard_user`, `problem_user`, `performance_glitch_user`, `error_user` and `visual_user`. This keeps user-specific defects visible in the functional area where they occur instead of isolating them in a separate special-user suite.

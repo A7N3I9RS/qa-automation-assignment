@@ -4,8 +4,8 @@
 .github/workflows/          GitHub Actions workflow
 docs/                       Test plan and supporting documentation
 src/saucedemo/fixtures/     SauceDemo typed Playwright fixtures
+src/saucedemo/data/         SauceDemo shared test data
 src/saucedemo/pages/        SauceDemo page objects
-src/saucedemo/scenarios/    SauceDemo reusable scenario helpers
 tests/saucedemo/            SauceDemo frontend e2e tests
 tests/reqres/               ReqRes API tests
 tests/reqres/data/          ReqRes external data for data-driven tests
@@ -21,6 +21,7 @@ package.json                readable npm scripts and project metadata
 - [docs/saucedemo-test-design.md](saucedemo-test-design.md): SauceDemo test design from business flow to automated test steps
 - [docs/reqres-test-design.md](reqres-test-design.md): ReqRes test design from API capability to automated test steps
 - [docs/automation-approach.md](automation-approach.md): test architecture and execution strategy
+- [src/saucedemo/data/users.ts](../src/saucedemo/data/users.ts): SauceDemo shared users and customer data
 - [src/saucedemo/fixtures/pages.ts](../src/saucedemo/fixtures/pages.ts): SauceDemo page-object fixtures
 - [playwright.config.ts](../playwright.config.ts): Playwright configuration
 - [tests/saucedemo](../tests/saucedemo): SauceDemo tests

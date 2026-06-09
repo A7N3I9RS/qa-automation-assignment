@@ -4,7 +4,7 @@
 
 The project uses Playwright Test with TypeScript.
 
-SauceDemo UI tests use typed Playwright fixtures from [src/saucedemo/fixtures](../src/saucedemo/fixtures) to provide page objects from [src/saucedemo/pages](../src/saucedemo/pages). This keeps selectors and page-level actions away from test assertions without recreating page objects inside every test. Shared SauceDemo scenario-level behavior is implemented in [src/saucedemo/scenarios](../src/saucedemo/scenarios).
+SauceDemo UI tests use typed Playwright fixtures from [src/saucedemo/fixtures](../src/saucedemo/fixtures) to provide page objects from [src/saucedemo/pages](../src/saucedemo/pages). This keeps selectors and page-level actions away from test assertions without recreating page objects inside every test. Shared SauceDemo users and customer data live in [src/saucedemo/data](../src/saucedemo/data).
 
 ReqRes API tests use Playwright's built-in `request` fixture and external test data from [tests/reqres/data](../tests/reqres/data).
 
@@ -31,7 +31,7 @@ After the happy path, the suite adds targeted risk coverage:
 
 SauceDemo intentionally exposes defects through dedicated users such as `problem_user`, `performance_glitch_user`, `error_user` and `visual_user`.
 
-The special-user matrix keeps these failures visible. This makes the report useful for triage: `standard_user` shows the expected baseline, while failing users identify which shared shopper behavior is currently broken.
+Cart and checkout specs run their functional shopper scenarios against those users. This keeps user-specific behavior visible where it matters, while the visual snapshot remains tied to `standard_user`.
 
 ## Test Commands
 
@@ -47,8 +47,6 @@ The special-user matrix keeps these failures visible. This makes the report usef
 | `npm run test:reqres`                         | Run all ReqRes tests                                |
 | `npm run test:saucedemo:baseline`             | Run SauceDemo baseline coverage                     |
 | `npm run test:ui-mode`                        | Open Playwright UI mode for local test development  |
-| `npm run test:saucedemo:special-users`        | Run SauceDemo special-user behavior matrix          |
-| `npm run test:saucedemo:special-users:headed` | Run SauceDemo special-user behavior matrix headed   |
 | `npm run show-report`                         | Open the Playwright HTML report                     |
 
 ## Reporting and Debugging
@@ -63,7 +61,7 @@ Playwright is configured to retain useful artifacts on failure:
 
 Visual snapshots use the project name in their path, so Chromium, Firefox and WebKit keep separate baselines and never compare screenshots across browsers.
 
-Slow motion is opt-in through `PLAYWRIGHT_SLOW_MO_FLAG=1`. `PLAYWRIGHT_SLOW_MO_MS_TIME` only controls the delay amount and defaults to `1000` milliseconds. Timing-sensitive checks are skipped when slow motion is enabled because Playwright's artificial action delay would distort the measured duration.
+Slow motion is opt-in through `PLAYWRIGHT_SLOW_MO_FLAG=1`. `PLAYWRIGHT_SLOW_MO_MS_TIME` only controls the delay amount and defaults to `1000` milliseconds.
 
 ## CI
 

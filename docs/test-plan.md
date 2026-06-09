@@ -23,7 +23,7 @@ The key assumptions and scenarios were identified from the visible application b
 - SauceDemo product catalog and sorting
 - SauceDemo cart updates
 - SauceDemo checkout happy path
-- SauceDemo user-specific behavior differences
+- SauceDemo user-specific behavior differences in cart and checkout flows
 - ReqRes `GET /api/users`
 - ReqRes `POST /api/users`
 - Basic API response status, schema, data and performance checks
@@ -54,7 +54,7 @@ Supporting business scenarios:
 - User can log in with valid credentials
 - Locked-out user cannot access the application
 - User can sort products and manage cart contents
-- Users with the same shopper role should receive the same core behavior
+- Shopping users should receive the same core cart and checkout behavior
 
 Functional areas used for test design:
 
@@ -62,7 +62,6 @@ Functional areas used for test design:
 - Product Catalog
 - Cart
 - Checkout
-- Shared Shopper Behavior
 - Users API
 
 For detailed scenarios and concrete test cases, see [Test design](test-design.md), [SauceDemo test design](saucedemo-test-design.md), and [ReqRes test design](reqres-test-design.md).
@@ -74,7 +73,7 @@ The project uses a risk-based automation approach:
 - Start with the critical happy path for `standard_user`
 - Add negative authentication coverage for `locked_out_user`
 - Cover catalog and cart behavior because they affect purchase intent
-- Run shared shopper behavior against SauceDemo special users to expose known user-specific defects
+- Run cart and checkout behavior against SauceDemo shopping users to expose known user-specific defects
 - Keep known defects visible as failing tests instead of hiding them as expected failures
 - Use Playwright API testing for ReqRes endpoint validation
 
@@ -82,7 +81,7 @@ The project uses a risk-based automation approach:
 
 - End-to-end UI tests
 - Negative UI tests
-- User-behavior matrix tests
+- Data-driven shopper behavior tests
 - REST API functional tests
 - Basic API schema and data validation
 - Basic API response-time validation for create-user requests
@@ -121,7 +120,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 
 - SauceDemo is a demo e-commerce application where the main business value is completing a product purchase flow.
 - `standard_user` represents the expected baseline shopper behavior.
-- SauceDemo special users intentionally expose defects and should be tested as a behavior matrix.
+- SauceDemo special users intentionally expose defects and are included in cart and checkout data-driven coverage.
 - ReqRes requires `REQRES_API_KEY` for API tests, so API tests fail with an explicit setup error when the key is not provided.
 - The UI suite runs across Chromium, Firefox and WebKit desktop browser engines.
 
@@ -156,6 +155,6 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 - ReqRes Playwright tests in [tests/reqres](../tests/reqres)
 - SauceDemo typed Playwright fixtures in [src/saucedemo/fixtures](../src/saucedemo/fixtures)
 - SauceDemo page objects in [src/saucedemo/pages](../src/saucedemo/pages)
-- SauceDemo reusable scenario helpers in [src/saucedemo/scenarios](../src/saucedemo/scenarios)
+- SauceDemo shared test data in [src/saucedemo/data](../src/saucedemo/data)
 - Test documentation in [docs](.)
 - GitHub Actions workflow in [.github/workflows/playwright.yml](../.github/workflows/playwright.yml)

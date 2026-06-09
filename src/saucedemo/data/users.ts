@@ -9,7 +9,17 @@ export const shoppingUsers = [
   'visual_user'
 ];
 
-export const sauceDemoPassword = 'secret_sauce';
+function getRequiredEnv(name: string) {
+  const value = process.env[name];
+
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+
+  return value;
+}
+
+export const sauceDemoPassword = getRequiredEnv('SAUCEDEMO_PASSWORD');
 
 export const defaultCustomer = {
   firstName: 'Alex',

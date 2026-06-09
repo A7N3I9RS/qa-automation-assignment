@@ -43,6 +43,7 @@ jobs:
       - name: Run full Playwright test suite
         run: npm test -- --workers=4
         env:
+          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
           REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
           API_RESPONSE_TIME_LIMIT_MS: 1000
 

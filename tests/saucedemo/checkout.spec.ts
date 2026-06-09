@@ -70,15 +70,12 @@ test.describe('SauceDemo successful product purchase', () => {
 
 test.describe('SauceDemo checkout visual regression', () => {
   test('checkout overview matches the baseline screenshot', async ({
-    browserName,
     cartPage,
     checkoutPage,
     inventoryPage,
     loginPage,
     page
   }) => {
-    test.skip(browserName !== 'chromium', 'Visual baseline is captured only for Chromium.');
-
     test.info().annotations.push({
       type: 'rationale',
       description:

@@ -59,6 +59,7 @@ npm run test:saucedemo:chromium
 npm run test:saucedemo:chromium:headed
 npm run test:saucedemo:firefox
 npm run test:saucedemo:webkit
+npm run test:saucedemo:update-snapshots
 npm run test:reqres
 npm run test:saucedemo:baseline
 npm run test:ui-mode
@@ -70,6 +71,8 @@ npm run show-report
 `npm test` runs every Playwright project. GitHub Actions uses the same command so CI reports the real product state, including SauceDemo user-specific defects.
 
 Use `npm run test:saucedemo:baseline` when you need a focused baseline check for the `standard_user` happy path and locked-out login behavior.
+
+Use `npm run test:saucedemo:update-snapshots` to refresh SauceDemo visual snapshots for Chromium, Firefox and WebKit. Snapshot files include the Playwright project name, so each browser compares only against its own baseline.
 
 Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
 

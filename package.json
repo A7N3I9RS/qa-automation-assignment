@@ -11,6 +11,7 @@
     "test:saucedemo:chromium:headed": "playwright test --project=saucedemo-chromium --headed --workers=1",
     "test:saucedemo:firefox": "playwright test --project=saucedemo-firefox",
     "test:saucedemo:webkit": "playwright test --project=saucedemo-webkit",
+    "test:saucedemo:update-snapshots": "playwright test tests/saucedemo/checkout.spec.ts --project=saucedemo-chromium --project=saucedemo-firefox --project=saucedemo-webkit --update-snapshots",
     "test:ui-mode": "playwright test --ui",
     "test:saucedemo:baseline": "playwright test --project=saucedemo-chromium tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts",
     "test:saucedemo:special-users": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts",

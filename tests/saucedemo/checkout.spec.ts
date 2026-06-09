@@ -91,7 +91,7 @@ test.describe('SauceDemo checkout visual regression', () => {
         await expect(page).toHaveScreenshot('checkout-overview.png', {
           animations: 'disabled',
           fullPage: true,
-          maxDiffPixelRatio: 0.02
+          maxDiffPixels: 250
         });
       });
     }

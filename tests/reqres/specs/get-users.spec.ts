@@ -1,15 +1,14 @@
 import { expect, test } from '@playwright/test';
-import { expectJsonResponse } from '../support/api-test-helpers.js';
+import { expectJsonResponse, requireReqResApiKey } from '../support/api-test-helpers.js';
 import {
   GetUsersResponseSchema,
   type GetUsersResponse
 } from '../schemas/get-users-response.js';
 
 test.describe('ReqRes API - GET List Users', () => {
-  test.skip(
-    !process.env.REQRES_API_KEY,
-    'REQRES_API_KEY is required because ReqRes now rejects unauthenticated legacy API requests.'
-  );
+  test.beforeAll(() => {
+    requireReqResApiKey();
+  });
 
   test('returns expected users, counts and data types', async ({ request }) => {
     test.info().annotations.push({

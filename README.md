@@ -30,7 +30,7 @@ npm run install:browsers
 ```
 
 ReqRes currently rejects unauthenticated legacy API requests. Create a free API key at the ReqRes dashboard and provide it as `REQRES_API_KEY` before running API tests.
-If `REQRES_API_KEY` is not set, the API tests are skipped with an explicit reason so the UI assignment remains runnable from a clean machine.
+If `REQRES_API_KEY` is not set, the API tests fail with an explicit setup error.
 
 Optional environment variables:
 

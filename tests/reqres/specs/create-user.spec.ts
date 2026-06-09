@@ -6,6 +6,7 @@ import {
   expectJsonResponse,
   expectPlainObject,
   isNonEmptyString,
+  requireReqResApiKey,
   type NonEmptyString
 } from '../support/api-test-helpers.js';
 
@@ -44,10 +45,9 @@ function expectCreateUserResponse(
 }
 
 test.describe('ReqRes API - POST Create User', () => {
-  test.skip(
-    !process.env.REQRES_API_KEY,
-    'REQRES_API_KEY is required because ReqRes now rejects unauthenticated legacy API requests.'
-  );
+  test.beforeAll(() => {
+    requireReqResApiKey();
+  });
 
   for (const user of createUsers) {
     test(`returns id and timestamp for ${user.name}`, async ({ request }) => {

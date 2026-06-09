@@ -122,7 +122,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 - SauceDemo is a demo e-commerce application where the main business value is completing a product purchase flow.
 - `standard_user` represents the expected baseline shopper behavior.
 - SauceDemo special users intentionally expose defects and should be tested as a behavior matrix.
-- ReqRes requires `REQRES_API_KEY` for API tests, so API tests are skipped when the key is not provided.
+- ReqRes requires `REQRES_API_KEY` for API tests, so API tests fail with an explicit setup error when the key is not provided.
 - The UI suite runs across Chromium, Firefox and WebKit desktop browser engines.
 
 ## Risks

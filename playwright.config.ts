@@ -27,7 +27,7 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'saucedemo',
+      name: 'saucedemo-chromium',
       testDir: './tests/saucedemo',
       use: {
         ...devices['Desktop Chrome'],

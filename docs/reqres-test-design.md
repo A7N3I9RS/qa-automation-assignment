@@ -19,7 +19,27 @@ The Users API exposes user listing and user creation behavior through public end
 
 #### Test Scenario: Client retrieves users
 
-##### Test Case: API returns expected users, counts and data types
+##### Test Case: API returns the expected users-list response schema
+
+Automated in [tests/reqres/specs/get-users.spec.ts](../tests/reqres/specs/get-users.spec.ts).
+
+Preconditions:
+
+- `REQRES_API_KEY` is configured.
+
+Test steps:
+
+1. Send `GET /api/users`.
+2. Verify status code.
+3. Verify response content type.
+4. Validate the response schema and possible data types with Zod.
+
+Expected result:
+
+- API returns `200`.
+- Response matches the expected users-list schema.
+
+##### Test Case: API returns expected page 2 users and pagination metadata
 
 Automated in [tests/reqres/specs/get-users.spec.ts](../tests/reqres/specs/get-users.spec.ts).
 
@@ -34,12 +54,12 @@ Test steps:
 3. Verify response content type.
 4. Verify total user count and returned data count for the current page.
 5. Verify known user last names.
-6. Verify pagination metadata and user field types.
+6. Validate the response schema with Zod.
 
 Expected result:
 
 - API returns `200`.
-- Response contains expected users, counts and data structure.
+- Response contains expected page 2 users, counts and data structure.
 
 Why essential:
 

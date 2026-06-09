@@ -29,7 +29,7 @@ npm install
 npm run install:browsers
 ```
 
-Provide the shared SauceDemo users password as `USERS_PASSWORD` before running UI tests.
+Provide the shared SauceDemo account password as `USERS_PASSWORD` before running UI tests.
 
 ReqRes currently rejects unauthenticated legacy API requests. Create a free API key at the ReqRes dashboard and provide it as `REQRES_API_KEY` before running API tests.
 If `REQRES_API_KEY` is not set, the API tests fail with an explicit setup error.
@@ -82,7 +82,7 @@ Use `npm run test:ui-mode` during local development to open Playwright UI mode f
 
 Use `npm run show-report` to open the latest Playwright HTML report. Keep `http://localhost:9323/` open and refresh it after test reruns.
 
-In GitHub Actions, the Playwright HTML report is uploaded as a workflow artifact. On `main`, the same report is also deployed to GitHub Pages for easier review.
+In GitHub Actions, the Playwright HTML report is uploaded as an artifact and deployed to GitHub Pages on `main`.
 
 For an easier visual demo, run headed tests with slow motion:
 
@@ -94,4 +94,4 @@ npm run test:saucedemo:chromium:headed
 
 `PLAYWRIGHT_SLOW_MO_MS_TIME` defaults to `1000` milliseconds, but it only takes effect when `PLAYWRIGHT_SLOW_MO_FLAG` is enabled.
 
-The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the suite in CI, add repository secrets named `USERS_PASSWORD` and `REQRES_API_KEY`.
+CI is configured in [.github/workflows/playwright.yml](.github/workflows/playwright.yml). To run it successfully, add repository secrets named `USERS_PASSWORD` and `REQRES_API_KEY`.

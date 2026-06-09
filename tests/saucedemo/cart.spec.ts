@@ -58,11 +58,7 @@ test.describe('SauceDemo cart review', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(accountName, async ({
-        cartPage,
-        inventoryPage,
-        loginPage
-      }) => {
+      test(accountName, async ({ cartPage, inventoryPage, loginPage }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:

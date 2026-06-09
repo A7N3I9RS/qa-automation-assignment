@@ -1,21 +1,12 @@
 import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
-import {
-  defaultCustomer,
-  usersWithAccess,
-  usersPassword
-} from '../../src/saucedemo/data/users.js';
+import { defaultCustomer, usersWithAccess, usersPassword } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo checkout information', () => {
   test.describe('User can continue with valid checkout information', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(accountName, async ({
-        cartPage,
-        checkoutPage,
-        inventoryPage,
-        loginPage
-      }) => {
+      test(accountName, async ({ cartPage, checkoutPage, inventoryPage, loginPage }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
@@ -44,12 +35,7 @@ test.describe('SauceDemo successful product purchase', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(accountName, async ({
-        cartPage,
-        checkoutPage,
-        inventoryPage,
-        loginPage
-      }) => {
+      test(accountName, async ({ cartPage, checkoutPage, inventoryPage, loginPage }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
@@ -82,13 +68,7 @@ test.describe('SauceDemo checkout visual regression', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(accountName, async ({
-        cartPage,
-        checkoutPage,
-        inventoryPage,
-        loginPage,
-        page
-      }) => {
+      test(accountName, async ({ cartPage, checkoutPage, inventoryPage, loginPage, page }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:

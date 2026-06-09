@@ -1,12 +1,21 @@
-export const standardUser = 'standard_user';
-export const lockedOutUser = 'locked_out_user';
+export const sauceDemoUsers = {
+  standard: 'standard_user',
+  lockedOut: 'locked_out_user',
+  problem: 'problem_user',
+  performanceGlitch: 'performance_glitch_user',
+  error: 'error_user',
+  visual: 'visual_user'
+} as const;
+
+export const standardUser = sauceDemoUsers.standard;
+export const lockedOutUser = sauceDemoUsers.lockedOut;
 
 export const shoppingUsers = [
-  standardUser,
-  'problem_user',
-  'performance_glitch_user',
-  'error_user',
-  'visual_user'
+  sauceDemoUsers.standard,
+  sauceDemoUsers.problem,
+  sauceDemoUsers.performanceGlitch,
+  sauceDemoUsers.error,
+  sauceDemoUsers.visual
 ];
 
 function getRequiredEnv(name: string) {

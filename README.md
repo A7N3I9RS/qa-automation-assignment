@@ -75,6 +75,8 @@ Use `npm run test:ui-mode` during local development to open Playwright UI mode f
 
 Use `npm run show-report` to open the latest Playwright HTML report. Keep `http://localhost:9323/` open and refresh it after test reruns.
 
+In GitHub Actions, the Playwright HTML report is uploaded as a workflow artifact. On `main`, the same report is also deployed to GitHub Pages for easier review.
+
 For an easier visual demo, run headed tests with slow motion:
 
 ```powershell
@@ -82,4 +84,4 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 npm run test:saucedemo:special-users:headed
 ```
 
-The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.
+The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

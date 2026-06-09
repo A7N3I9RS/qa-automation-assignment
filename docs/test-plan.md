@@ -54,7 +54,7 @@ Supporting business scenarios:
 - User can log in with valid credentials
 - Locked-out user cannot access the application
 - User can sort products and manage cart contents
-- Shopping users should receive the same core cart and checkout behavior
+- Users with access should receive the same core cart and checkout behavior
 
 Functional areas used for test design:
 
@@ -73,7 +73,7 @@ The project uses a risk-based automation approach:
 - Start with the critical happy path for `standard_user`
 - Add negative authentication coverage for `locked_out_user`
 - Cover catalog and cart behavior because they affect purchase intent
-- Run cart and checkout behavior against SauceDemo shopping users to expose known user-specific defects
+- Run cart and checkout behavior against SauceDemo users with access to expose known user-specific defects
 - Keep known defects visible as failing tests instead of hiding them as expected failures
 - Use Playwright API testing for ReqRes endpoint validation
 

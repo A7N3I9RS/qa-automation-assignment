@@ -1,8 +1,8 @@
 import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
-import { shoppingUsers, usersPassword } from '../../src/saucedemo/data/users.js';
+import { usersPassword, usersWithAccess } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo product sorting', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
@@ -28,7 +28,7 @@ test.describe('SauceDemo product sorting', () => {
 });
 
 test.describe('SauceDemo cart management', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
@@ -56,7 +56,7 @@ test.describe('SauceDemo cart management', () => {
 });
 
 test.describe('SauceDemo cart review', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();

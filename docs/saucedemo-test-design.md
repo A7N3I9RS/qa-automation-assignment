@@ -86,7 +86,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in as one of the shopping users.
+- User is logged in as one of the users with access.
 - User is on the Products page.
 - Products are visible.
 
@@ -114,7 +114,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in as one of the shopping users.
+- User is logged in as one of the users with access.
 - User is on the Products page.
 - Products are visible.
 - Cart is empty.
@@ -150,7 +150,7 @@ Automated in [tests/saucedemo/cart.spec.ts](../tests/saucedemo/cart.spec.ts).
 
 Preconditions:
 
-- User is logged in as one of the shopping users.
+- User is logged in as one of the users with access.
 - User added two products to the cart.
 - User removed one product before opening the cart.
 
@@ -182,7 +182,7 @@ Automated in [tests/saucedemo/checkout.spec.ts](../tests/saucedemo/checkout.spec
 
 Preconditions:
 
-- User is logged in as one of the shopping users.
+- User is logged in as one of the users with access.
 - User has at least one product in the cart.
 - User started checkout.
 
@@ -240,4 +240,4 @@ Why essential:
 
 ## Shopper Coverage
 
-Cart and checkout tests are data-driven across `standard_user`, `problem_user`, `performance_glitch_user`, `error_user` and `visual_user`. This keeps user-specific defects visible in the functional area where they occur instead of isolating them in a separate special-user suite.
+Cart and checkout tests are data-driven across users with access: `standard_user`, `problem_user`, `performance_glitch_user`, `error_user` and `visual_user`. This keeps user-specific defects visible in the functional area where they occur instead of isolating them in a separate special-user suite.

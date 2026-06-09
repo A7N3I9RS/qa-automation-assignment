@@ -1,12 +1,12 @@
 import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 import {
   defaultCustomer,
-  shoppingUsers,
+  usersWithAccess,
   usersPassword
 } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo checkout information', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test('user can continue with valid checkout information', async ({
         cartPage,
@@ -38,7 +38,7 @@ test.describe('SauceDemo checkout information', () => {
 });
 
 test.describe('SauceDemo successful product purchase', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test('user can complete a purchase successfully', async ({
         cartPage,
@@ -74,7 +74,7 @@ test.describe('SauceDemo successful product purchase', () => {
 });
 
 test.describe('SauceDemo checkout visual regression', () => {
-  for (const username of shoppingUsers) {
+  for (const username of usersWithAccess) {
     test.describe(`Shopper: ${username}`, () => {
       test(`${username} checkout overview matches the standard_user baseline screenshot`, async ({
         cartPage,

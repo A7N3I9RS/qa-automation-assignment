@@ -76,7 +76,7 @@ npm run show-report
 
 Use `npm run test:saucedemo:baseline` when you need a focused baseline check for the `standard_user` happy path and locked-out login behavior.
 
-Use `npm run test:saucedemo:update-snapshots` to refresh the `standard_user` checkout visual baseline for Chromium, Firefox and WebKit. Snapshot files include the Playwright project name, so each browser compares only against its own baseline. Other shopping users compare their checkout overview against that `standard_user` baseline so user-specific visual differences appear in the report.
+Use `npm run test:saucedemo:update-snapshots` to refresh the `standard_user` checkout visual baseline for Chromium, Firefox and WebKit. Snapshot files include the Playwright project name, so each browser compares only against its own baseline. Other users with access compare their checkout overview against that `standard_user` baseline so user-specific visual differences appear in the report.
 
 Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
 

@@ -10,7 +10,7 @@ export const sauceDemoUsers = {
 export const standardUser = sauceDemoUsers.standard;
 export const lockedOutUser = sauceDemoUsers.lockedOut;
 
-export const shoppingUsers = [
+export const usersWithAccess = [
   sauceDemoUsers.standard,
   sauceDemoUsers.problem,
   sauceDemoUsers.performanceGlitch,

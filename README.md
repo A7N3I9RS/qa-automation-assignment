@@ -65,7 +65,7 @@ npm run test:matrix:headed
 npm run test:defects
 npm run test:defects:headed
 npm run test:api
-npm run report
+npm run show-report
 ```
 
 `npm test` runs the full regression suite. It is expected to fail while SauceDemo still contains user-specific defects. Use `npm run test:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.

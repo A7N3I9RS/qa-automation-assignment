@@ -18,7 +18,7 @@
     "test:defects:headed": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts --headed --workers=1",
     "test:reqres": "playwright test --project=reqres",
     "test:api": "playwright test --project=reqres",
-    "report": "playwright show-report",
+    "show-report": "playwright show-report",
     "install:browsers": "playwright install chromium firefox webkit"
   },
   "keywords": [

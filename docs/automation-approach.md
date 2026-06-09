@@ -49,7 +49,7 @@ The special-user matrix keeps these failures visible. This makes the report usef
 | `npm run test:defects` | Alias for the defect-focused matrix |
 | `npm run test:defects:headed` | Run defect-focused matrix headed |
 | `npm run test:api` | Alias for all ReqRes tests |
-| `npm run report` | Open the Playwright HTML report |
+| `npm run show-report` | Open the Playwright HTML report |
 
 ## Reporting and Debugging
 

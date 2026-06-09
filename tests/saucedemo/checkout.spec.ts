@@ -10,7 +10,7 @@ test.describe('SauceDemo checkout information', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} can continue with valid checkout information`, async ({
+      test(accountName, async ({
         cartPage,
         checkoutPage,
         inventoryPage,
@@ -44,7 +44,7 @@ test.describe('SauceDemo successful product purchase', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} can complete a purchase successfully`, async ({
+      test(accountName, async ({
         cartPage,
         checkoutPage,
         inventoryPage,
@@ -82,7 +82,7 @@ test.describe('SauceDemo checkout visual regression', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} checkout overview matches the baseline screenshot`, async ({
+      test(accountName, async ({
         cartPage,
         checkoutPage,
         inventoryPage,

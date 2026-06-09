@@ -6,10 +6,7 @@ test.describe('SauceDemo product sorting', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} can sort products by price from low to high`, async ({
-        inventoryPage,
-        loginPage
-      }) => {
+      test(accountName, async ({ inventoryPage, loginPage }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
@@ -34,10 +31,7 @@ test.describe('SauceDemo cart management', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} can add and remove products from the cart`, async ({
-        inventoryPage,
-        loginPage
-      }) => {
+      test(accountName, async ({ inventoryPage, loginPage }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
@@ -64,7 +58,7 @@ test.describe('SauceDemo cart review', () => {
     for (const username of usersWithAccess) {
       const accountName = username.toUpperCase();
 
-      test(`${accountName} sees the correct remaining product after product removal`, async ({
+      test(accountName, async ({
         cartPage,
         inventoryPage,
         loginPage

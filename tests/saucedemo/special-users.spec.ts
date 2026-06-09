@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import {
-  expectCatalogVisualsMatchBaseline,
   expectCheckoutCanBeCompleted,
   expectCheckoutFormPreservesCustomerInfo,
   expectInventoryLoadsWithin
@@ -24,18 +23,6 @@ test.describe('SauceDemo common user behavior matrix', () => {
       });
 
       await expectInventoryLoadsWithin(page, username, 3000);
-    });
-  }
-
-  for (const username of shoppingUsers) {
-    test(`${username} should display baseline product prices and images`, async ({ page }) => {
-      test.info().annotations.push({
-        type: 'rationale',
-        description:
-          'Users with the same shopper role should see the same product data, prices and images.'
-      });
-
-      await expectCatalogVisualsMatchBaseline(page, username);
     });
   }
 

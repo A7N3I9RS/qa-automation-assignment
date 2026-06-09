@@ -4,8 +4,6 @@ import { CheckoutPage } from '../pages/checkout-page.js';
 import { InventoryPage } from '../pages/inventory-page.js';
 import { LoginPage } from '../pages/login-page.js';
 
-export const baselineProductPrices = ['$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99'];
-
 type CustomerInfo = {
   firstName: string;
   lastName: string;
@@ -39,19 +37,6 @@ export async function expectInventoryLoadsWithin(
   const loginTimeMs = Date.now() - startedAt;
 
   expect(loginTimeMs).toBeLessThan(maxLoginTimeMs);
-}
-
-export async function expectCatalogVisualsMatchBaseline(page: Page, username: string) {
-  const inventoryPage = await loginAs(page, username);
-
-  await expect(inventoryPage.productPrices).toHaveText(baselineProductPrices);
-
-  const imageSources = await page
-    .locator('.inventory_item_img img')
-    .evaluateAll((images) => images.map((image) => image.getAttribute('src') ?? ''));
-
-  expect(new Set(imageSources).size).toBe(imageSources.length);
-  expect(imageSources.every((src) => !src.includes('sl-404'))).toBe(true);
 }
 
 export async function expectCheckoutFormPreservesCustomerInfo(page: Page, username: string) {

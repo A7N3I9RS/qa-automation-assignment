@@ -54,7 +54,6 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 
 ```bash
 npm test
-npm run test:ci
 npm run test:saucedemo:all-browsers
 npm run test:saucedemo:chromium
 npm run test:saucedemo:chromium:headed
@@ -68,9 +67,9 @@ npm run test:saucedemo:special-users:headed
 npm run show-report
 ```
 
-`npm run test:ci` runs the stable CI suite: SauceDemo baseline coverage in Chromium plus ReqRes API tests. Use this command when you want the same intent as GitHub Actions.
+`npm test` runs every Playwright project. GitHub Actions uses the same command so CI reports the real product state, including SauceDemo user-specific defects.
 
-`npm test` runs every Playwright project and can fail while SauceDemo still contains user-specific defects. Use `npm run test:saucedemo:baseline` to demonstrate the stable SauceDemo happy-path coverage for `standard_user` and the locked-out login check.
+Use `npm run test:saucedemo:baseline` when you need a focused baseline check for the `standard_user` happy path and locked-out login behavior.
 
 Use `npm run test:ui-mode` during local development to open Playwright UI mode for interactive running, debugging and rerunning tests.
 
@@ -83,4 +82,4 @@ $env:PLAYWRIGHT_SLOW_MO_MS="300"
 npm run test:saucedemo:special-users:headed
 ```
 
-The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.
+The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To run the ReqRes API tests in CI, add a repository secret named `REQRES_API_KEY`.

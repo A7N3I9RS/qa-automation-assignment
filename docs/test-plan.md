@@ -143,8 +143,8 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 
 ## Exit Criteria
 
-- Stable CI tests pass with `npm run test:ci`
-- Stable baseline UI tests pass for `standard_user`
+- The full Playwright suite runs in CI with `npm test`
+- Baseline UI behavior is validated for `standard_user`
 - Locked-out login behavior is validated
 - API tests pass when `REQRES_API_KEY` is configured
 - Known SauceDemo defects are visible in the report

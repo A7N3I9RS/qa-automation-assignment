@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "test": "playwright test",
-    "test:ci": "playwright test --project=saucedemo-chromium --project=reqres tests/saucedemo/authentication.spec.ts tests/saucedemo/cart.spec.ts tests/saucedemo/checkout.spec.ts tests/reqres",
     "test:saucedemo:all-browsers": "playwright test --project=saucedemo-chromium --project=saucedemo-firefox --project=saucedemo-webkit",
     "test:saucedemo:chromium": "playwright test --project=saucedemo-chromium",
     "test:saucedemo:chromium:headed": "playwright test --project=saucedemo-chromium --headed --workers=1",

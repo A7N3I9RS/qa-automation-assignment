@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  stable-regression:
+  full-regression:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -31,8 +31,8 @@ jobs:
       - name: Type-check tests
         run: npx tsc --noEmit
 
-      - name: Run stable CI test suite
-        run: npm run test:ci
+      - name: Run full Playwright test suite
+        run: npm test
         env:
           REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
           API_RESPONSE_TIME_LIMIT_MS: 1000

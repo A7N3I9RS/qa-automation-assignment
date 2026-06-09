@@ -2,7 +2,6 @@ import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 import {
   defaultCustomer,
   shoppingUsers,
-  standardUser,
   usersPassword
 } from '../../src/saucedemo/data/users.js';
 
@@ -75,36 +74,40 @@ test.describe('SauceDemo successful product purchase', () => {
 });
 
 test.describe('SauceDemo checkout visual regression', () => {
-  test('standard_user checkout overview matches the baseline screenshot', async ({
-    cartPage,
-    checkoutPage,
-    inventoryPage,
-    loginPage,
-    page
-  }) => {
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'The checkout overview is a stable summary page and a useful target for a visual smoke check.'
+  for (const username of shoppingUsers) {
+    test.describe(`Shopper: ${username}`, () => {
+      test(`${username} checkout overview matches the standard_user baseline screenshot`, async ({
+        cartPage,
+        checkoutPage,
+        inventoryPage,
+        loginPage,
+        page
+      }) => {
+        test.info().annotations.push({
+          type: 'rationale',
+          description:
+            'The checkout overview is a stable summary page and a useful target for visual comparison across shopper users.'
+        });
+
+        await loginPage.goto();
+        await loginPage.login(username, usersPassword);
+        await inventoryPage.expectLoaded();
+
+        await inventoryPage.addBackpackToCart();
+        await inventoryPage.openCart();
+
+        await cartPage.expectLoaded();
+        await cartPage.checkout();
+
+        await checkoutPage.fillCustomerInfo(defaultCustomer);
+        await checkoutPage.expectOverviewLoaded();
+
+        await expect(page).toHaveScreenshot('checkout-overview.png', {
+          animations: 'disabled',
+          fullPage: true,
+          maxDiffPixelRatio: 0.02
+        });
+      });
     });
-
-    await loginPage.goto();
-    await loginPage.login(standardUser, usersPassword);
-    await inventoryPage.expectLoaded();
-
-    await inventoryPage.addBackpackToCart();
-    await inventoryPage.openCart();
-
-    await cartPage.expectLoaded();
-    await cartPage.checkout();
-
-    await checkoutPage.fillCustomerInfo(defaultCustomer);
-    await checkoutPage.expectOverviewLoaded();
-
-    await expect(page).toHaveScreenshot('checkout-overview.png', {
-      animations: 'disabled',
-      fullPage: true,
-      maxDiffPixelRatio: 0.02
-    });
-  });
+  }
 });

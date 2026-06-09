@@ -33,8 +33,10 @@ UI tests use shared account data from [src/saucedemo/data/users.ts](../src/sauce
 
 ## Visual Baselines
 
-Visual snapshots are browser-specific because the Playwright project name is part of the snapshot path. The update command refreshes only the `STANDARD_USER` baseline:
+Visual snapshots are browser and OS specific because the Playwright project name and platform are part of the snapshot path. The update command refreshes only the `STANDARD_USER` baseline:
 
 ```bash
 npm run test:saucedemo:update-snapshots
 ```
+
+CI runs on Ubuntu and expects `*-linux.png` baselines. Windows local baselines use `*-win32.png`.

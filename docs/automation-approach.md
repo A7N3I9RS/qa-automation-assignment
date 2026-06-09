@@ -22,15 +22,17 @@ SauceDemo intentionally exposes defects through `problem_user`, `performance_gli
 
 ## Visual Testing
 
-Checkout overview is the only visual regression target. The baseline is captured with `STANDARD_USER`; all other users with access compare against that browser-specific baseline.
+Checkout overview is the only visual regression target. The baseline is captured with `STANDARD_USER`; all other users with access compare against that browser/OS-specific baseline.
 
-Snapshots include the Playwright project name in the path, so Chromium, Firefox and WebKit never compare screenshots against each other.
+Snapshots include the Playwright project name and OS platform in the path, so Chromium, Firefox, WebKit, Windows and Linux never compare screenshots against each other.
 
 Refresh baselines with:
 
 ```bash
 npm run test:saucedemo:update-snapshots
 ```
+
+GitHub Actions runs on Ubuntu, so CI baselines should be generated as `*-linux.png` files in an Ubuntu-compatible environment.
 
 ## Reporting and CI
 

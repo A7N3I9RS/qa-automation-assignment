@@ -108,7 +108,7 @@ SauceDemo users:
 - `error_user`
 - `visual_user`
 
-The shared SauceDemo password is provided through `SAUCEDEMO_PASSWORD`.
+The shared SauceDemo users password is provided through `USERS_PASSWORD`.
 
 ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../tests/reqres/data/create-users.json).
 
@@ -117,7 +117,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 - SauceDemo is a demo e-commerce application where the main business value is completing a product purchase flow.
 - `standard_user` represents the expected baseline shopper behavior.
 - SauceDemo special users intentionally expose defects and are included in cart and checkout data-driven coverage.
-- UI tests require `SAUCEDEMO_PASSWORD`; missing credentials fail with an explicit setup error.
+- UI tests require `USERS_PASSWORD`; missing credentials fail with an explicit setup error.
 - ReqRes requires `REQRES_API_KEY` for API tests, so API tests fail with an explicit setup error when the key is not provided.
 - The UI suite runs across Chromium, Firefox and WebKit desktop browser engines.
 
@@ -125,7 +125,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 
 - External test environments can change without notice.
 - SauceDemo intentionally contains user-specific defects, so the full suite may fail by design.
-- Missing environment credentials can block UI or API execution if `SAUCEDEMO_PASSWORD` or `REQRES_API_KEY` is not configured.
+- Missing environment credentials can block UI or API execution if `USERS_PASSWORD` or `REQRES_API_KEY` is not configured.
 - Network instability can affect both UI and API tests.
 - Demo data may change because both systems are externally hosted.
 
@@ -135,7 +135,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 - Playwright browser engines are installed with `npm run install:browsers`
 - Node.js 24 LTS is recommended for local and CI execution
 - Internet access is available
-- `SAUCEDEMO_PASSWORD` is configured when UI tests are required
+- `USERS_PASSWORD` is configured when UI tests are required
 - `REQRES_API_KEY` is configured when API tests are required
 
 ## Exit Criteria

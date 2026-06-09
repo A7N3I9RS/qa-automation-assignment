@@ -69,4 +69,4 @@ The repository includes a GitHub Actions workflow at [.github/workflows/playwrig
 
 CI runs `npm test`, the full Playwright suite. This keeps defects visible in pull requests and preserves the HTML report as triage evidence. Pull requests keep the report as a workflow artifact; `main` branch runs also deploy the report to GitHub Pages.
 
-To run the suite in CI, configure repository secrets named `SAUCEDEMO_PASSWORD` and `REQRES_API_KEY`.
+To run the suite in CI, configure repository secrets named `USERS_PASSWORD` and `REQRES_API_KEY`.

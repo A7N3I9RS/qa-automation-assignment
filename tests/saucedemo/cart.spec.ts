@@ -1,12 +1,12 @@
 import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
-import { sauceDemoPassword, shoppingUsers } from '../../src/saucedemo/data/users.js';
+import { shoppingUsers, usersPassword } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo product sorting', () => {
   for (const username of shoppingUsers) {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
-        await loginPage.login(username, sauceDemoPassword);
+        await loginPage.login(username, usersPassword);
       });
 
       test('user can sort products by price from low to high', async ({ inventoryPage }) => {
@@ -32,7 +32,7 @@ test.describe('SauceDemo cart management', () => {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
-        await loginPage.login(username, sauceDemoPassword);
+        await loginPage.login(username, usersPassword);
       });
 
       test('user can add and remove products from the cart', async ({ inventoryPage }) => {
@@ -60,7 +60,7 @@ test.describe('SauceDemo cart review', () => {
     test.describe(`Shopper: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
-        await loginPage.login(username, sauceDemoPassword);
+        await loginPage.login(username, usersPassword);
       });
 
       test('cart shows the correct remaining product after product removal', async ({

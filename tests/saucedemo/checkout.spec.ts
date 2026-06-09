@@ -1,9 +1,9 @@
 import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 import {
   defaultCustomer,
-  sauceDemoPassword,
   shoppingUsers,
-  standardUser
+  standardUser,
+  usersPassword
 } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo checkout information', () => {
@@ -22,7 +22,7 @@ test.describe('SauceDemo checkout information', () => {
         });
 
         await loginPage.goto();
-        await loginPage.login(username, sauceDemoPassword);
+        await loginPage.login(username, usersPassword);
         await inventoryPage.expectLoaded();
 
         await inventoryPage.addBackpackToCart();
@@ -54,7 +54,7 @@ test.describe('SauceDemo successful product purchase', () => {
         });
 
         await loginPage.goto();
-        await loginPage.login(username, sauceDemoPassword);
+        await loginPage.login(username, usersPassword);
         await inventoryPage.expectLoaded();
 
         await inventoryPage.addBackpackToCart();
@@ -89,7 +89,7 @@ test.describe('SauceDemo checkout visual regression', () => {
     });
 
     await loginPage.goto();
-    await loginPage.login(standardUser, sauceDemoPassword);
+    await loginPage.login(standardUser, usersPassword);
     await inventoryPage.expectLoaded();
 
     await inventoryPage.addBackpackToCart();

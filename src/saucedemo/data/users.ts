@@ -19,7 +19,7 @@ function getRequiredEnv(name: string) {
   return value;
 }
 
-export const sauceDemoPassword = getRequiredEnv('SAUCEDEMO_PASSWORD');
+export const usersPassword = getRequiredEnv('USERS_PASSWORD');
 
 export const defaultCustomer = {
   firstName: 'Alex',

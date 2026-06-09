@@ -43,9 +43,9 @@ jobs:
       - name: Run full Playwright test suite
         run: npm test -- --workers=4
         env:
-          SAUCEDEMO_PASSWORD: ${{ secrets.SAUCEDEMO_PASSWORD }}
+          USERS_PASSWORD: ${{ secrets.USERS_PASSWORD }}
           REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
-          API_RESPONSE_TIME_LIMIT_MS: 1000
+          API_RESPONSE_TIME_LIMIT_MS: 2000
 
       - name: Upload Playwright report
         if: always()

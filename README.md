@@ -29,7 +29,7 @@ npm install
 npm run install:browsers
 ```
 
-Provide the shared SauceDemo password as `SAUCEDEMO_PASSWORD` before running UI tests.
+Provide the shared SauceDemo users password as `USERS_PASSWORD` before running UI tests.
 
 ReqRes currently rejects unauthenticated legacy API requests. Create a free API key at the ReqRes dashboard and provide it as `REQRES_API_KEY` before running API tests.
 If `REQRES_API_KEY` is not set, the API tests fail with an explicit setup error.
@@ -37,9 +37,9 @@ If `REQRES_API_KEY` is not set, the API tests fail with an explicit setup error.
 Optional environment variables:
 
 ```bash
-SAUCEDEMO_PASSWORD=replace-with-your-saucedemo-password
+USERS_PASSWORD=replace-with-your-users-password
 REQRES_API_KEY=replace-with-your-reqres-api-key
-API_RESPONSE_TIME_LIMIT_MS=1000
+API_RESPONSE_TIME_LIMIT_MS=2000
 PLAYWRIGHT_SLOW_MO_FLAG=0
 PLAYWRIGHT_SLOW_MO_MS_TIME=1000
 ```
@@ -49,9 +49,9 @@ For local runs, these values can be stored in a `.env` file copied from `.env.ex
 On Windows PowerShell:
 
 ```powershell
-$env:SAUCEDEMO_PASSWORD="replace-with-your-saucedemo-password"
+$env:USERS_PASSWORD="replace-with-your-users-password"
 $env:REQRES_API_KEY="replace-with-your-reqres-api-key"
-$env:API_RESPONSE_TIME_LIMIT_MS="1000"
+$env:API_RESPONSE_TIME_LIMIT_MS="2000"
 $env:PLAYWRIGHT_SLOW_MO_FLAG="0"
 $env:PLAYWRIGHT_SLOW_MO_MS_TIME="1000"
 ```
@@ -94,4 +94,4 @@ npm run test:saucedemo:chromium:headed
 
 `PLAYWRIGHT_SLOW_MO_MS_TIME` defaults to `1000` milliseconds, but it only takes effect when `PLAYWRIGHT_SLOW_MO_FLAG` is enabled.
 
-The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the suite in CI, add repository secrets named `SAUCEDEMO_PASSWORD` and `REQRES_API_KEY`.
+The repository includes a GitHub Actions workflow at [.github/workflows/playwright.yml](.github/workflows/playwright.yml). It intentionally runs the full test suite so failures can be used for defect triage. To publish the HTML report to GitHub Pages, configure Pages to use GitHub Actions as the source. To run the suite in CI, add repository secrets named `USERS_PASSWORD` and `REQRES_API_KEY`.

@@ -1,5 +1,5 @@
 import { test } from '../../src/saucedemo/fixtures/pages.js';
-import { lockedOutUser, sauceDemoPassword, standardUser } from '../../src/saucedemo/data/users.js';
+import { lockedOutUser, standardUser, usersPassword } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo authentication', () => {
   test('standard_user can log in to the application', async ({ loginPage, inventoryPage }) => {
@@ -10,7 +10,7 @@ test.describe('SauceDemo authentication', () => {
     });
 
     await loginPage.goto();
-    await loginPage.login(standardUser, sauceDemoPassword);
+    await loginPage.login(standardUser, usersPassword);
 
     await inventoryPage.expectLoaded();
   });
@@ -23,7 +23,7 @@ test.describe('SauceDemo authentication', () => {
     });
 
     await loginPage.goto();
-    await loginPage.login(lockedOutUser, sauceDemoPassword);
+    await loginPage.login(lockedOutUser, usersPassword);
 
     await loginPage.expectErrorContains('Sorry, this user has been locked out.');
   });

@@ -238,6 +238,6 @@ Why essential:
 
 - Checkout completion is the main business result because it validates the full path from product selection to completed order.
 
-## Shopper Coverage
+## User Account Coverage
 
 Cart and checkout tests are data-driven across users with access: `standard_user`, `problem_user`, `performance_glitch_user`, `error_user` and `visual_user`. This keeps user-specific defects visible in the functional area where they occur instead of isolating them in a separate special-user suite.

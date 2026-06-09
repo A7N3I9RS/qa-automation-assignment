@@ -7,7 +7,7 @@ import {
 
 test.describe('SauceDemo checkout information', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test('user can continue with valid checkout information', async ({
         cartPage,
         checkoutPage,
@@ -39,7 +39,7 @@ test.describe('SauceDemo checkout information', () => {
 
 test.describe('SauceDemo successful product purchase', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test('user can complete a purchase successfully', async ({
         cartPage,
         checkoutPage,
@@ -75,7 +75,7 @@ test.describe('SauceDemo successful product purchase', () => {
 
 test.describe('SauceDemo checkout visual regression', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test(`${username} checkout overview matches the standard_user baseline screenshot`, async ({
         cartPage,
         checkoutPage,
@@ -86,7 +86,7 @@ test.describe('SauceDemo checkout visual regression', () => {
         test.info().annotations.push({
           type: 'rationale',
           description:
-            'The checkout overview is a stable summary page and a useful target for visual comparison across shopper users.'
+            'The checkout overview is a stable summary page and a useful target for visual comparison across user accounts.'
         });
 
         await loginPage.goto();

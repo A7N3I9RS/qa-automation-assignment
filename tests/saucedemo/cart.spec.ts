@@ -3,7 +3,7 @@ import { usersPassword, usersWithAccess } from '../../src/saucedemo/data/users.j
 
 test.describe('SauceDemo product sorting', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
         await loginPage.login(username, usersPassword);
@@ -29,7 +29,7 @@ test.describe('SauceDemo product sorting', () => {
 
 test.describe('SauceDemo cart management', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
         await loginPage.login(username, usersPassword);
@@ -57,7 +57,7 @@ test.describe('SauceDemo cart management', () => {
 
 test.describe('SauceDemo cart review', () => {
   for (const username of usersWithAccess) {
-    test.describe(`Shopper: ${username}`, () => {
+    test.describe(`Account: ${username}`, () => {
       test.beforeEach(async ({ loginPage }) => {
         await loginPage.goto();
         await loginPage.login(username, usersPassword);

@@ -81,7 +81,7 @@ The project uses a risk-based automation approach:
 
 - End-to-end UI tests
 - Negative UI tests
-- Data-driven shopper behavior tests
+- Data-driven user-account behavior tests
 - REST API functional tests
 - Basic API schema and data validation
 - Basic API response-time validation for create-user requests
@@ -115,7 +115,7 @@ ReqRes create-user data is stored in [tests/reqres/data/create-users.json](../te
 ## Assumptions
 
 - SauceDemo is a demo e-commerce application where the main business value is completing a product purchase flow.
-- `standard_user` represents the expected baseline shopper behavior.
+- `standard_user` represents the expected baseline user-account behavior.
 - SauceDemo special users intentionally expose defects and are included in cart and checkout data-driven coverage.
 - UI tests require `USERS_PASSWORD`; missing credentials fail with an explicit setup error.
 - ReqRes requires `REQRES_API_KEY` for API tests, so API tests fail with an explicit setup error when the key is not provided.

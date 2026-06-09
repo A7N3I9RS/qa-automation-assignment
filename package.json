@@ -16,6 +16,8 @@
     "test:saucedemo:special-users": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts",
     "test:saucedemo:special-users:headed": "playwright test --project=saucedemo-chromium tests/saucedemo/special-users.spec.ts --headed --workers=1",
     "test:reqres": "playwright test --project=reqres",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "show-report": "playwright show-report",
     "install:browsers": "playwright install chromium firefox webkit"
   },
@@ -32,6 +34,7 @@
     "@playwright/test": "^1.60.0",
     "@types/node": "^24.13.1",
     "dotenv": "^17.4.2",
+    "prettier": "^3.8.4",
     "typescript": "^6.0.3",
     "zod": "^4.4.3"
   }

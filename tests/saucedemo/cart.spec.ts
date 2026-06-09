@@ -9,7 +9,8 @@ test.describe('SauceDemo product sorting', () => {
   test('user can sort products by price from low to high', async ({ inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Product sorting is essential because it helps users find relevant products faster.'
+      description:
+        'Product sorting is essential because it helps users find relevant products faster.'
     });
 
     await inventoryPage.expectLoaded();
@@ -30,7 +31,8 @@ test.describe('SauceDemo cart management', () => {
   test('user can add and remove products from the cart', async ({ inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Cart management is essential because selected products represent the user purchase intent.'
+      description:
+        'Cart management is essential because selected products represent the user purchase intent.'
     });
 
     await inventoryPage.expectLoaded();
@@ -50,10 +52,14 @@ test.describe('SauceDemo cart review', () => {
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
-  test('cart shows the correct remaining product after product removal', async ({ inventoryPage, cartPage }) => {
+  test('cart shows the correct remaining product after product removal', async ({
+    inventoryPage,
+    cartPage
+  }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Cart review is essential because users need to confirm what they are going to buy before checkout.'
+      description:
+        'Cart review is essential because users need to confirm what they are going to buy before checkout.'
     });
 
     await inventoryPage.expectLoaded();

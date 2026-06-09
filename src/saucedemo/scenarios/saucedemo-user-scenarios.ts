@@ -4,14 +4,7 @@ import { CheckoutPage } from '../pages/checkout-page.js';
 import { InventoryPage } from '../pages/inventory-page.js';
 import { LoginPage } from '../pages/login-page.js';
 
-export const baselineProductPrices = [
-  '$29.99',
-  '$9.99',
-  '$15.99',
-  '$49.99',
-  '$7.99',
-  '$15.99'
-];
+export const baselineProductPrices = ['$29.99', '$9.99', '$15.99', '$49.99', '$7.99', '$15.99'];
 
 type CustomerInfo = {
   firstName: string;
@@ -36,7 +29,11 @@ export async function loginAs(page: Page, username: string) {
   return inventoryPage;
 }
 
-export async function expectInventoryLoadsWithin(page: Page, username: string, maxLoginTimeMs: number) {
+export async function expectInventoryLoadsWithin(
+  page: Page,
+  username: string,
+  maxLoginTimeMs: number
+) {
   const startedAt = Date.now();
   await loginAs(page, username);
   const loginTimeMs = Date.now() - startedAt;
@@ -49,9 +46,9 @@ export async function expectCatalogVisualsMatchBaseline(page: Page, username: st
 
   await expect(inventoryPage.productPrices).toHaveText(baselineProductPrices);
 
-  const imageSources = await page.locator('.inventory_item_img img').evaluateAll((images) =>
-    images.map((image) => image.getAttribute('src') ?? '')
-  );
+  const imageSources = await page
+    .locator('.inventory_item_img img')
+    .evaluateAll((images) => images.map((image) => image.getAttribute('src') ?? ''));
 
   expect(new Set(imageSources).size).toBe(imageSources.length);
   expect(imageSources.every((src) => !src.includes('sl-404'))).toBe(true);

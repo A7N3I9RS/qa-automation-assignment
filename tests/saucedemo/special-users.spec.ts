@@ -52,7 +52,9 @@ test.describe('SauceDemo common user behavior matrix', () => {
   }
 
   for (const username of shoppingUsers) {
-    test(`${username} should complete checkout with the same shopper role behavior`, async ({ page }) => {
+    test(`${username} should complete checkout with the same shopper role behavior`, async ({
+      page
+    }) => {
       test.info().annotations.push({
         type: 'rationale',
         description:
@@ -75,6 +77,8 @@ test.describe('SauceDemo common user behavior matrix', () => {
     await page.locator('[data-test="password"]').fill('secret_sauce');
     await page.locator('[data-test="login-button"]').click();
 
-    await expect(page.locator('[data-test="error"]')).toContainText('Sorry, this user has been locked out.');
+    await expect(page.locator('[data-test="error"]')).toContainText(
+      'Sorry, this user has been locked out.'
+    );
   });
 });

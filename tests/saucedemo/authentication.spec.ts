@@ -4,7 +4,8 @@ test.describe('SauceDemo authentication', () => {
   test('valid user can log in to the application', async ({ loginPage, inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Login is essential because every shopping flow starts behind the authentication gate.'
+      description:
+        'Login is essential because every shopping flow starts behind the authentication gate.'
     });
 
     await loginPage.goto();
@@ -16,7 +17,8 @@ test.describe('SauceDemo authentication', () => {
   test('locked-out user cannot log in to the application', async ({ loginPage }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Negative authentication coverage is essential because blocked users must not enter the application.'
+      description:
+        'Negative authentication coverage is essential because blocked users must not enter the application.'
     });
 
     await loginPage.goto();

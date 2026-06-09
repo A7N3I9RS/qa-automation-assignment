@@ -35,20 +35,20 @@ The special-user matrix keeps these failures visible. This makes the report usef
 
 ## Test Commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm test` | Run every Playwright project |
-| `npm run test:saucedemo:all-browsers` | Run SauceDemo tests in Chromium, Firefox and WebKit |
-| `npm run test:saucedemo:chromium` | Run SauceDemo tests in Chromium |
-| `npm run test:saucedemo:chromium:headed` | Run SauceDemo Chromium tests headed |
-| `npm run test:saucedemo:firefox` | Run SauceDemo tests in Firefox |
-| `npm run test:saucedemo:webkit` | Run SauceDemo tests in WebKit |
-| `npm run test:reqres` | Run all ReqRes tests |
-| `npm run test:saucedemo:baseline` | Run SauceDemo baseline coverage |
-| `npm run test:ui-mode` | Open Playwright UI mode for local test development |
-| `npm run test:saucedemo:special-users` | Run SauceDemo special-user behavior matrix |
-| `npm run test:saucedemo:special-users:headed` | Run SauceDemo special-user behavior matrix headed |
-| `npm run show-report` | Open the Playwright HTML report |
+| Command                                       | Purpose                                             |
+| --------------------------------------------- | --------------------------------------------------- |
+| `npm test`                                    | Run every Playwright project                        |
+| `npm run test:saucedemo:all-browsers`         | Run SauceDemo tests in Chromium, Firefox and WebKit |
+| `npm run test:saucedemo:chromium`             | Run SauceDemo tests in Chromium                     |
+| `npm run test:saucedemo:chromium:headed`      | Run SauceDemo Chromium tests headed                 |
+| `npm run test:saucedemo:firefox`              | Run SauceDemo tests in Firefox                      |
+| `npm run test:saucedemo:webkit`               | Run SauceDemo tests in WebKit                       |
+| `npm run test:reqres`                         | Run all ReqRes tests                                |
+| `npm run test:saucedemo:baseline`             | Run SauceDemo baseline coverage                     |
+| `npm run test:ui-mode`                        | Open Playwright UI mode for local test development  |
+| `npm run test:saucedemo:special-users`        | Run SauceDemo special-user behavior matrix          |
+| `npm run test:saucedemo:special-users:headed` | Run SauceDemo special-user behavior matrix headed   |
+| `npm run show-report`                         | Open the Playwright HTML report                     |
 
 ## Reporting and Debugging
 

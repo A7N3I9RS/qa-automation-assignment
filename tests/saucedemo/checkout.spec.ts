@@ -9,7 +9,8 @@ test.describe('SauceDemo checkout information', () => {
   }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Checkout information is essential because orders require customer data before confirmation.'
+      description:
+        'Checkout information is essential because orders require customer data before confirmation.'
     });
 
     await loginPage.goto();
@@ -40,7 +41,8 @@ test.describe('SauceDemo successful product purchase', () => {
   }) => {
     test.info().annotations.push({
       type: 'rationale',
-      description: 'Checkout is essential because it validates the main business path from selected item to completed order.'
+      description:
+        'Checkout is essential because it validates the main business path from selected item to completed order.'
     });
 
     await loginPage.goto();
@@ -79,7 +81,8 @@ test.describe('SauceDemo checkout visual regression', () => {
 
     test.info().annotations.push({
       type: 'rationale',
-      description: 'The checkout overview is a stable summary page and a useful target for a visual smoke check.'
+      description:
+        'The checkout overview is a stable summary page and a useful target for a visual smoke check.'
     });
 
     await loginPage.goto();

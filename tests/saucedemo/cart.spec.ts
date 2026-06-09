@@ -2,20 +2,22 @@ import { expect, test } from '../../src/saucedemo/fixtures/pages.js';
 import { usersPassword, usersWithAccess } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo product sorting', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test.beforeEach(async ({ loginPage }) => {
-        await loginPage.goto();
-        await loginPage.login(username, usersPassword);
-      });
+  test.describe('User can sort products by price from low to high', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
 
-      test('user can sort products by price from low to high', async ({ inventoryPage }) => {
+      test(`${accountName} can sort products by price from low to high`, async ({
+        inventoryPage,
+        loginPage
+      }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
             'Product sorting is essential because it helps users find relevant products faster.'
         });
 
+        await loginPage.goto();
+        await loginPage.login(username, usersPassword);
         await inventoryPage.expectLoaded();
 
         await inventoryPage.sortBy('lohi');
@@ -23,25 +25,27 @@ test.describe('SauceDemo product sorting', () => {
 
         expect(pricesAscending).toEqual([...pricesAscending].sort((left, right) => left - right));
       });
-    });
-  }
+    }
+  });
 });
 
 test.describe('SauceDemo cart management', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test.beforeEach(async ({ loginPage }) => {
-        await loginPage.goto();
-        await loginPage.login(username, usersPassword);
-      });
+  test.describe('User can add and remove products from the cart', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
 
-      test('user can add and remove products from the cart', async ({ inventoryPage }) => {
+      test(`${accountName} can add and remove products from the cart`, async ({
+        inventoryPage,
+        loginPage
+      }) => {
         test.info().annotations.push({
           type: 'rationale',
           description:
             'Cart management is essential because selected products represent the user purchase intent.'
         });
 
+        await loginPage.goto();
+        await loginPage.login(username, usersPassword);
         await inventoryPage.expectLoaded();
 
         await inventoryPage.addBackpackToCart();
@@ -51,21 +55,19 @@ test.describe('SauceDemo cart management', () => {
         await inventoryPage.removeBackpackFromCart();
         await inventoryPage.expectCartCount(1);
       });
-    });
-  }
+    }
+  });
 });
 
 test.describe('SauceDemo cart review', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test.beforeEach(async ({ loginPage }) => {
-        await loginPage.goto();
-        await loginPage.login(username, usersPassword);
-      });
+  test.describe('Cart shows the correct remaining product after product removal', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
 
-      test('cart shows the correct remaining product after product removal', async ({
+      test(`${accountName} sees the correct remaining product after product removal`, async ({
+        cartPage,
         inventoryPage,
-        cartPage
+        loginPage
       }) => {
         test.info().annotations.push({
           type: 'rationale',
@@ -73,6 +75,8 @@ test.describe('SauceDemo cart review', () => {
             'Cart review is essential because users need to confirm what they are going to buy before checkout.'
         });
 
+        await loginPage.goto();
+        await loginPage.login(username, usersPassword);
         await inventoryPage.expectLoaded();
 
         await inventoryPage.addBackpackToCart();
@@ -84,6 +88,6 @@ test.describe('SauceDemo cart review', () => {
         await cartPage.expectItemVisible('Sauce Labs Bike Light');
         await cartPage.expectItemHidden('Sauce Labs Backpack');
       });
-    });
-  }
+    }
+  });
 });

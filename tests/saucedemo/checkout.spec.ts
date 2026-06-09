@@ -6,9 +6,11 @@ import {
 } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo checkout information', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test('user can continue with valid checkout information', async ({
+  test.describe('User can continue with valid checkout information', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
+
+      test(`${accountName} can continue with valid checkout information`, async ({
         cartPage,
         checkoutPage,
         inventoryPage,
@@ -33,14 +35,16 @@ test.describe('SauceDemo checkout information', () => {
         await checkoutPage.fillCustomerInfo(defaultCustomer);
         await checkoutPage.expectOverviewLoaded();
       });
-    });
-  }
+    }
+  });
 });
 
 test.describe('SauceDemo successful product purchase', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test('user can complete a purchase successfully', async ({
+  test.describe('User can complete a purchase successfully', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
+
+      test(`${accountName} can complete a purchase successfully`, async ({
         cartPage,
         checkoutPage,
         inventoryPage,
@@ -69,14 +73,16 @@ test.describe('SauceDemo successful product purchase', () => {
         await checkoutPage.finishOrder();
         await checkoutPage.expectOrderComplete();
       });
-    });
-  }
+    }
+  });
 });
 
 test.describe('SauceDemo checkout visual regression', () => {
-  for (const username of usersWithAccess) {
-    test.describe(`Account: ${username}`, () => {
-      test(`${username} checkout overview matches the standard_user baseline screenshot`, async ({
+  test.describe('Checkout overview matches the baseline screenshot', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
+
+      test(`${accountName} checkout overview matches the baseline screenshot`, async ({
         cartPage,
         checkoutPage,
         inventoryPage,
@@ -108,6 +114,6 @@ test.describe('SauceDemo checkout visual regression', () => {
           maxDiffPixelRatio: 0.02
         });
       });
-    });
-  }
+    }
+  });
 });

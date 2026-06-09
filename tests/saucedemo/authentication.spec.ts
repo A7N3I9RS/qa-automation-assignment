@@ -2,7 +2,7 @@ import { test } from '../../src/saucedemo/fixtures/pages.js';
 import { lockedOutUser, standardUser, usersPassword } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo authentication', () => {
-  test('standard_user can log in to the application', async ({ loginPage, inventoryPage }) => {
+  test('STANDARD_USER can log in to the application', async ({ loginPage, inventoryPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description:
@@ -15,7 +15,7 @@ test.describe('SauceDemo authentication', () => {
     await inventoryPage.expectLoaded();
   });
 
-  test('locked_out_user cannot log in to the application', async ({ loginPage }) => {
+  test('LOCKED_OUT_USER cannot log in to the application', async ({ loginPage }) => {
     test.info().annotations.push({
       type: 'rationale',
       description:

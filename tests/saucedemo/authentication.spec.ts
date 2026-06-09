@@ -1,18 +1,24 @@
 import { test } from '../../src/saucedemo/fixtures/pages.js';
-import { lockedOutUser, standardUser, usersPassword } from '../../src/saucedemo/data/users.js';
+import { lockedOutUser, usersPassword, usersWithAccess } from '../../src/saucedemo/data/users.js';
 
 test.describe('SauceDemo authentication', () => {
-  test('STANDARD_USER can log in to the application', async ({ loginPage, inventoryPage }) => {
-    test.info().annotations.push({
-      type: 'rationale',
-      description:
-        'Login is essential because every shopping flow starts behind the authentication gate.'
-    });
+  test.describe('User can log in to the application', () => {
+    for (const username of usersWithAccess) {
+      const accountName = username.toUpperCase();
 
-    await loginPage.goto();
-    await loginPage.login(standardUser, usersPassword);
+      test(accountName, async ({ loginPage, inventoryPage }) => {
+        test.info().annotations.push({
+          type: 'rationale',
+          description:
+            'Login is essential because every shopping flow starts behind the authentication gate.'
+        });
 
-    await inventoryPage.expectLoaded();
+        await loginPage.goto();
+        await loginPage.login(username, usersPassword);
+
+        await inventoryPage.expectLoaded();
+      });
+    }
   });
 
   test('LOCKED_OUT_USER cannot log in to the application', async ({ loginPage }) => {
